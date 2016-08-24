@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html ng-app="Degree_Not_Required">
-  <head >
+  <head>
+  <base href="/">
     <title>DegreeNotRequired</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
+    <%= yield :head %>
+
   </head>
 
   <body>
