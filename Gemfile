@@ -17,6 +17,8 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 gem 'pry'
 gem 'pry-nav'
+
+gem 'angular-rails-templates'
 # Use angularjs as the JavaScript library
 gem 'angularjs-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
