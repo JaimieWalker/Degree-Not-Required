@@ -7,7 +7,13 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider){
 	$stateProvider
         .state('home', {
             url: '/',
+            templateUrl: 'home/home.html',
             controller: 'homeCtrl'
-        });
+        })
+        .state('results',{
+        	url: '/results',
+        	templateUrl: 'search_results/results.html'
+
+        })
 		
 })
