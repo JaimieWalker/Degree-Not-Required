@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  scope "api" do
+    resources :results
+  end
+
+
+
   match "/*path" => "application#index", via: :all
   root to: "application#index"
 

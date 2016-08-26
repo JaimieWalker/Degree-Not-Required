@@ -2,6 +2,14 @@
 <section ng-controller="homeCtrl"> 
 <%= stylesheet_link_tag "home" %>
 <h1>Degree Not Required</h1>
+
+<form action="api/results">
+  First name:<br>
+  <input type="text" name="firstname" value=""><br>
+  Last name:<br>
+  <input type="text" name="lastname" value=""><br><br>
+  <input type="submit" value="Submit">
+</form>
 <p>Tell me a bit about yourself __</p>
 <p>I live in State:__</p>
 <p>City __</p>
