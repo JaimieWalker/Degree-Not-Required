@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   scope "api" do
+  	# get "api/results"
     resources :results
   end
 
