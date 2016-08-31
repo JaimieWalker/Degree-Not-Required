@@ -9,7 +9,6 @@ class Indeed
 	def initialize(api_key)
 		@api_key = api_key
 		@options = Url_Options.new(2,"json");
-		binding.pry
 	end
 	# Passed in from the front end
 	def constructUrl(params)
