@@ -1,19 +1,42 @@
+require "uri"
+require "net/http"
+require "json"
 class Indeed
-	# Options that can be passed into the url
+	attr_accessor :api_key,:url
+	def initialize(api_key)
+		@api_key = api_key
+		@options = Url_Options.new(2,"json")
+		@options[:latlong] = 1
+		@options[:limit] = 25
+	end
+
+# Options that can be passed into the url
 	Url_Options = Struct.new(:v,:format,:callback,:l,:sort,
 		:radius,:st,:jt,:start,:limit,:fromage,:highlight,
 		:filter,:latlong,:co,:chnl,:userip,:useragent,:q)
-	# I know there is a gem for this but I want to do it myself
-	attr_accessor :api_key 
+# I know there is a gem for this but I want to do it myself
 	
-	def initialize(api_key)
-		@api_key = api_key
-		@options = Url_Options.new(2,"json");
-	end
-	# Passed in from the front end
+# Params is passed in from jobs controller in from the front end.
+# Params is available at the controller level
 	def constructUrl(params)
-		url_base = "http://api.indeed.com/ads/apisearch?publisher=#{api_key}"
-		"&format=json&q=java&l=austin%2C+tx&sort=&radius=&st=&jt=&start=&limit=&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2"
+		url = "http://api.indeed.com/ads/apisearch?publisher=#{api_key}&format=json"
+		@options[:q] = params['query']
+		url += concat_struct_to_url
+		return url
+	end
+
+	def self.api_request(url)
+		return JSON.parse(Net::HTTP.get(URI(url)))
+	end
+
+# Gets all of the different options from the struct and concats them into a url safe string
+	def concat_struct_to_url
+		options = ""
+		 @options.each_pair{ |key,value|
+			next if value == nil
+			options += "&#{key.to_s}=#{URI.escape(value.to_s)}"
+		}
+		return options
 	end
 	
 	

@@ -11,7 +11,7 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider){
             controller: 'homeCtrl'
         })
         .state('results',{
-        	url: '/results',
+        	url: '/api/jobs',
         	templateUrl: 'search_results/results.html'
 
         })

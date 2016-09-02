@@ -4,3 +4,4 @@
 #   http_host: 'example.org',
 #   https: false
 # )
+require "#{Rails.root}/lib/assets/indeed.rb"
