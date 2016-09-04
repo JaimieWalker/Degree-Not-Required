@@ -1,6 +1,6 @@
 class Company < ApplicationRecord
-  has_many :states
-  has_many :cities
   has_many :countries
+  has_many :states, through: :countries
+  has_many :cities, through: :states
   has_many :jobs
 end
