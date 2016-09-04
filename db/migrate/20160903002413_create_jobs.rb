@@ -7,7 +7,9 @@ class CreateJobs < ActiveRecord::Migration[5.0]
       t.string :job_title
       t.float :longitude
       t.float :latitude
-
+      t.string :platform
+      t.datetime :date
+      
       t.timestamps
     end
   end

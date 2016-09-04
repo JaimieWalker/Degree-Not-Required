@@ -1,5 +1,6 @@
 class Company < ApplicationRecord
-  belongs_to :state
-  belongs_to :city
-  belongs_to :country
+  has_many :states
+  has_many :cities
+  has_many :countries
+  has_many :jobs
 end
