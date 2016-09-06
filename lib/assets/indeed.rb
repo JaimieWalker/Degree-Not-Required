@@ -1,6 +1,8 @@
 require "uri"
 require "net/http"
 require "json"
+require "open-uri"
+require "nokogiri"
 class Indeed
 	attr_accessor :api_key,:url
 	attr_reader :data
@@ -27,9 +29,17 @@ class Indeed
 		url << concat_struct_to_url
 		return url
 	end
-# takes the string for the urls api call and returns a raw json file
-	def self.api_request(url)
-		return JSON.parse(Net::HTTP.get(URI(url)))
+=begin 
+Takes the string for the urls api call and the request, and response which is an ActionDispatch::Request, response respectively
+object with all the the info needed for the api call and returns a raw json file
+=end
+	def self.api_request(url,req,res)
+		json = JSON.parse(Net::HTTP.get(URI(url)))
+		removed_degree = json["results"].reject.each_with_index do |result,index|
+			job_page = Nokogiri::HTML(open(result["url"]))
+		end
+		
+		return removed_degree
 	end
 
 # Gets all of the different options from the struct and concats them into a url safe string
@@ -44,9 +54,6 @@ class Indeed
 
 # Models the data from the json
 	def model_data(json)
-			
-		binding.pry
-
 	end
 	
 end

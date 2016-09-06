@@ -157,6 +157,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
   mysql2 (>= 0.3.18, < 0.5)
+  nokogiri
   pry
   pry-nav
   puma (~> 3.0)
