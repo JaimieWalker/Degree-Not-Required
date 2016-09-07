@@ -37,7 +37,7 @@ class Indeed
 Takes the string for the urls api call and the request, and response which is an ActionDispatch::Request, response respectively
 object with all the the info needed for the api call and returns a raw json file
 =end
-	def self.api_request(url)
+	def api_request
 		json = JSON.parse(Net::HTTP.get(URI(url)))
 		@total_results = json["totalResults"].to_i
 		return json
@@ -58,11 +58,24 @@ object with all the the info needed for the api call and returns a raw json file
 		@url = String.new(@base_url) 
 		@options[:start] += (@options[:limit] - 1)
 		@url << concat_struct_to_url
-		return Indeed.api_request(@url)
+		return api_request(@url)
+	end
+# Gets results that don't have a degree
+	def get_results(json)
+		no_degree_jobs = remove_degrees_indeed(json)
 	end
 
-	def number_of_results(num=25)
-		
+	def fill_page_with_results(json,num=25)
+		search_results = get_results(json)
+		while(search_results.size < num && end_of_results?) do
+			binding.pry
+			search_results << (get_results(next_request))
+		end
+		return search_results
+	end
+
+	def end_of_results?
+		 return @options[:start].to_i <= @total_results 
 	end
 	
 end

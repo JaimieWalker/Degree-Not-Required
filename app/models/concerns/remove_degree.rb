@@ -11,17 +11,19 @@ module RemoveDegree
 		/Required education:\W*? Bachelor/i,
 		/Required education:\W*? Associate's/i,
 		/degree/i,
-		/graduating/i]
+		/graduating/i,
+		/graduates/i]
 	MAYBE = [/Bachelor’s degree preferred/i,
 		/Degree .* preferably/i,
-		/equivalent experience/i]
+		/equivalent experience/i,
+		/relevant life experience/i]
 
 	
 	def remove_degrees_indeed(json)
 		no_degree_jobs = json["results"].select.each_with_index do |result,index|
 			job_page = Nokogiri::HTML(open(result["url"]))
 			job_summary = job_page.css("#job_summary").text
-			if(RemoveDegree.no_degree_indeed?(job_summary))
+			if(no_degree_required_indeed?(job_summary))
 				result["job_summary"] = job_summary
 			end
 		end
@@ -41,8 +43,4 @@ module RemoveDegree
 		# If it gets this far return true and accept
 		return true
 	end
-
-
-
-
 end

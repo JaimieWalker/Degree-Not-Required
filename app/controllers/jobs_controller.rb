@@ -3,9 +3,9 @@ class JobsController < ApplicationController
 	def index
 		indeed = Indeed.new(Rails.application.secrets.INDEED_PUBLISHER_KEY)
 		indeed.construct_url(params)
-		json = Indeed.api_request(indeed.url)
+		json = indeed.api_request
+		results = indeed.fill_page_with_results(json)
 		binding.pry
-		indeed.next_request
-		render json: json
+		render json: results
 	end
 end
