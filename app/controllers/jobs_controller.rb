@@ -5,6 +5,7 @@ class JobsController < ApplicationController
 		indeed.construct_url(params)
 		json = Indeed.api_request(indeed.url)
 		binding.pry
-		render json: @indeed_response
+		indeed.next_request
+		render json: json
 	end
 end
