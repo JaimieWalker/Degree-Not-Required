@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  namespace :api do 
+  namespace :api, constraints: { format: 'json' } do 
   	# get "api/results"
-    resources :jobs, defaults: {format: :json}
+    resources :jobs
   end
 
   match "*path" => "application#index", via: :all

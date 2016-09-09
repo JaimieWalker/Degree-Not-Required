@@ -11,7 +11,8 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider){
         })
         .state('results',{
             url: '/jobs',
-            templateUrl: 'search_results/results.html'
+            templateUrl: 'search_results/results.html',
+            controller: 'resultCtrl'
 
         })
 	 $urlRouterProvider.otherwise('/');
