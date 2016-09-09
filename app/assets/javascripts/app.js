@@ -3,17 +3,17 @@ var app = angular.module("Degree_Not_Required",
 
 app.config(function($stateProvider, $urlRouterProvider,$locationProvider){
 	$locationProvider.html5Mode(true);
-	
-	$stateProvider
+    $stateProvider
         .state('home', {
             url: '/',
             templateUrl: 'home/home.html',
             controller: 'homeCtrl'
         })
         .state('results',{
-        	url: '/api/jobs',
-        	templateUrl: 'search_results/results.html'
+            url: '/jobs',
+            templateUrl: 'search_results/results.html'
 
         })
+	 $urlRouterProvider.otherwise('/');
 		
 })

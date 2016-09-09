@@ -3,10 +3,10 @@
 <%= stylesheet_link_tag "home" %>
 <h1>Degree Not Required</h1>
 
-<form action="api/jobs">
+<form action="jobs">
   Search:<br>
   <input type="text" name="query" value="" placeholder="Job Title,Company"><br>
-  <input type="submit" value="Submit">
+  <input type="submit" ng-click="search()" value="Submit">
 </form>
 
 <p>Tell me a bit about yourself __</p>
