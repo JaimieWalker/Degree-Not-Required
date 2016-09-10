@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   namespace :api, constraints: { format: 'json' } do 
-  	# get "api/results"
     resources :jobs
   end
 

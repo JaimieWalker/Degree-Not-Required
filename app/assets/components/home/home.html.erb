@@ -3,11 +3,7 @@
 <%= stylesheet_link_tag "home" %>
 <h1>Degree Not Required</h1>
 
-<form novalidate action="jobs">
-  Search:<br>
-  <input type="text" name="query" value="" placeholder="Job Title,Company"><br>
-  <input type="submit" ng-click="search()" value="Submit">
-</form>
+<dnr-search-form></dnr-search-form>
 
 <p>Tell me a bit about yourself __</p>
 <p>I live in State:__</p>
