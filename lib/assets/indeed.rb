@@ -65,7 +65,7 @@ object with all the the info needed for the api call and returns a raw json file
 		no_degree_jobs = remove_degrees_indeed(json)
 	end
 
-	def fill_page_with_results(json,num=10)
+	def fill_page_with_results(json,num=9)
 		search_results = get_results(json)
 		while(search_results.size < num && end_of_results?) do
 			json = get_results(next_request)

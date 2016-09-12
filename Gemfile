@@ -1,6 +1,14 @@
 source 'https://rubygems.org'
+# Added by me
+gem 'pry'
+gem 'pry-nav'
 
+gem 'angular-rails-templates'
+# Use angularjs as the JavaScript library
+gem 'angularjs-rails'
 gem 'nokogiri'
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 # Use mysql as the database for Active Record
@@ -15,12 +23,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'pry'
-gem 'pry-nav'
-
-gem 'angular-rails-templates'
-# Use angularjs as the JavaScript library
-gem 'angularjs-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production

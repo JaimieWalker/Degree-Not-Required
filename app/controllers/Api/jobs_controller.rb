@@ -12,7 +12,7 @@ class Api::JobsController < ApplicationController
 
 	def ensure_json_request  
 	  return if request.format == :json  
-	  head :reset_content
+	  head :bad_request, :reset_content
 	end
 
 end
