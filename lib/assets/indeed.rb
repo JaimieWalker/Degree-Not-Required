@@ -30,7 +30,10 @@ class Indeed
 # Params is available at the controller level
 	def construct_url(params)
 		@url = "http://api.indeed.com/ads/apisearch?publisher=#{api_key}&format=json"
-		@options[:q] = params['query']
+		@options[:q] = params["query"]
+		@options[:userip] = params["userip"]
+		@options[:useragent] = params["useragent"]
+		
 		@url << concat_struct_to_url
 	end
 =begin 

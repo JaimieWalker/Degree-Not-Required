@@ -3,9 +3,9 @@ module RemoveDegree
 		/GED certification/i,
 		/High school or equivalent/i
 	]
-	REJECT = [/Bachelor's/,
+	REJECT = [/\bbachelor'?s\b/,
 		/Master's Degree/i,
-		/Bachelors degree/i,
+		/\bbachelor'?s\s*degree\b/i,
 		/Required education:\W*? Associate/i,
 		/Required education:\W*? Bachelor’s/i,
 		/Required education:\W*? Bachelor/i,
@@ -21,6 +21,7 @@ module RemoveDegree
 	
 	def remove_degrees_indeed(json)
 		no_degree_jobs = json["results"].select.each_with_index do |result,index|
+
 			job_page = Nokogiri::HTML(open(result["url"]))
 			job_summary = job_page.css("#job_summary").text
 			if(no_degree_required_indeed?(job_summary))

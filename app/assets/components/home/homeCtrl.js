@@ -8,8 +8,9 @@ angular.module('Degree_Not_Required')
     	jobsService.getJobs($scope.formData).
     	then(function success(response){
     		$scope.job_results = response.data
+            console.log(response.data);
     	},function error(response){
-    		alert("Sorry, got a + " + response.status + " error.");
+    		console.log("Sorry, got a + " + response.status + " error.");
     	}); 	
     }
 
