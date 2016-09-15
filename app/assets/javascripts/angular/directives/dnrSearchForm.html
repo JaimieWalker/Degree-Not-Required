@@ -1,6 +1,8 @@
-<form novalidate ng-submit="search()">
+<form ng-submit="search()">
   Search:
   <br>
-  <input type="text" ng-model="formData.query" name="query" placeholder="Job Title,Company"><br>
-  <input type="submit" value="Submit">
+  <input type="text" ng-model="formData.query" 
+  name="query" placeholder="Job Title,Company" 
+  ng-blur="saveSession()" required><br>
+  <input type="submit" value="search">
 </form>

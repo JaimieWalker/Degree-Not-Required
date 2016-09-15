@@ -1,9 +1,16 @@
 "use strict"
 angular.module('Degree_Not_Required')
 	.factory('jobsService', ['$http', function($http){
-		let jobsService = {
+		let jsonResponse = {}
 
-		    getJobs : function(params){
+		let jobsService = {
+			getJobs : function(){
+				return jsonResponse;
+			},
+			setJobs : function(jobs){
+				jsonResponse = jobs;
+			},
+		    requestJobs : function(params){
 				return $http({
 					method : "GET",
 					url    : "api/jobs",
@@ -14,7 +21,13 @@ angular.module('Degree_Not_Required')
 							   'Content-Type': "json",
 							   'accept'      : "application/json"
 							 }
-				});
+				}).then(function(response){
+					setJobs(response.data);
+					return response;
+				},
+				function(error){
+					return error.data;
+				})
 			}
 
 
