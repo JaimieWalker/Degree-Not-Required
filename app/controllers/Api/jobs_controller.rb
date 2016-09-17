@@ -10,6 +10,14 @@ class Api::JobsController < ApplicationController
 	    render :json => results	
 	end
 
+
+	def create
+		query = Query.find_or_create_by(keyword: params["formData"]["query"]) do |query| 
+			
+		end
+		binding.pry
+	end
+
 	def ensure_json_request 
 	  return if request.format == :json  
 	  head :bad_request, :reset_content

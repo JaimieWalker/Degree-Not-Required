@@ -6,15 +6,15 @@ angular.module('Degree_Not_Required')
 		"query" : sessionStorage.getItem("query")?"":sessionStorage.getItem("query")
 	}   
 
-    $scope.search = function(){
-    	let qs = $httpParamSerializer($scope.formData)
-    	$scope.formData.query = $scope.formData.query.toLowerCase();
-        jobsService.requestJobs($scope.formData);
-        $location.url("/jobs?" + qs);
-    }
-
     $scope.saveSession = function(){
     	sessionStorage.setItem("query",$scope.formData.query);
     }
+    
+    $scope.search = function(){
+        let qs = $httpParamSerializer($scope.formData)
+        $scope.formData.query = $scope.formData.query.toLowerCase();
+        $location.url("/jobs?" + qs);
+    }
+
 
 });

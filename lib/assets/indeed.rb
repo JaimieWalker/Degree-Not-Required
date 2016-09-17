@@ -7,7 +7,7 @@ require "nokogiri"
 class Indeed
 	include RemoveDegree
 
-	attr_accessor :api_key,:base_url, :url,:total_results
+	attr_accessor :api_key,:base_url, :url,:total_results,:search_results
 	attr_reader :options
 	def initialize(api_key)
 		@base_url = "http://api.indeed.com/ads/apisearch?publisher=#{api_key}&format=json"
@@ -18,6 +18,7 @@ class Indeed
 		@options[:latlong] = 1
 		@options[:limit] = 25
 		@options[:start] = 0
+		@search_results = []
 	end
 
 # Options that can be passed into the url
@@ -57,6 +58,7 @@ object with all the the info needed for the api call and returns a raw json file
 	end
 
 	# increments number by limit-1 and returns a json of the next batch of jobs
+	# Get the next request of unfiltered jobs
 	def next_request
 		@url = String.new(@base_url) 
 		@options[:start] += (@options[:limit] - 1)
@@ -64,17 +66,22 @@ object with all the the info needed for the api call and returns a raw json file
 		return api_request
 	end
 # Gets results that don't have a degree
-	def get_results(json)
-		no_degree_jobs = remove_degrees_indeed(json)
+	def get_results_with_no_degrees(json)
+		no_degree_jobs = remove_degrees_from_indeed(json)
 	end
 
 	def fill_page_with_results(json,num=9)
-		search_results = get_results(json)
-		while(search_results.size < num && end_of_results?) do
-			json = get_results(next_request)
-			search_results << json if json.size != 0
+		begin
+			@search_results = get_results_with_no_degrees(json)		
+			while(@search_results.size < num && end_of_results?) do
+				json = get_results_with_no_degrees(next_request)
+				@search_results << json if json.size != 0
+			end
+		rescue Errno::ETIMEDOUT => e	
+			binding.pry
+		ensure
+			return @search_results.to_json
 		end
-		return search_results.to_json
 	end
 
 	def end_of_results?

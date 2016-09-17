@@ -19,15 +19,15 @@ module RemoveDegree
 		/relevant life experience/i]
 
 	
-	def remove_degrees_indeed(json)
-		no_degree_jobs = json["results"].select.each_with_index do |result,index|
-
+	def remove_degrees_from_indeed(json)
+		return json["results"].select.each_with_index do |result,index|
 			job_page = Nokogiri::HTML(open(result["url"]))
 			job_summary = job_page.css("#job_summary").text
 			if(no_degree_required_indeed?(job_summary))
 				result["job_summary"] = job_summary
 			end
 		end
+
 	end
 
 	# Takes a string

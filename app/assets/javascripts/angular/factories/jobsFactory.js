@@ -1,16 +1,9 @@
 "use strict"
 angular.module('Degree_Not_Required')
-	.factory('jobsService', ['$http', function($http){
-		let jsonResponse = {}
+	.factory('jobsService', function($http){
 
 		let jobsService = {
-			getJobs : function(){
-				return jsonResponse;
-			},
-			setJobs : function(jobs){
-				jsonResponse = jobs;
-			},
-		    requestJobs : function(params){
+			 requestJobs : function(params){
 				return $http({
 					method : "GET",
 					url    : "api/jobs",
@@ -18,19 +11,30 @@ angular.module('Degree_Not_Required')
 					cache  : true,
 					responseType : "json",
 					headers: {
-							   'Content-Type': "json",
-							   'accept'      : "application/json"
+							   "Content-Type": "json",
+							   "accept"      : "application/json"
 							 }
 				}).then(function(response){
-					setJobs(response.data);
 					return response;
 				},
 				function(error){
-					return error.data;
+					return error;
+				})
+			},
+
+			postJobs : function(data,params){
+				return $http({
+					method : "POST",
+					url    : "api/jobs",
+					data   : JSON.stringify({ "formData":params ,"jobs":data }),
+					headers : {
+						"Content-Type" : "application/json",
+						"accept"       : "application/json"
+					}
 				})
 			}
 
 
 		}
 		return jobsService
-	}])
+	})
