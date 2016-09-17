@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160905151448) do
+ActiveRecord::Schema.define(version: 20160917084655) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -85,6 +85,15 @@ ActiveRecord::Schema.define(version: 20160905151448) do
     t.string   "keyword"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "query_jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "query_id"
+    t.integer  "jobs_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["jobs_id"], name: "index_query_jobs_on_jobs_id", using: :btree
+    t.index ["query_id"], name: "index_query_jobs_on_query_id", using: :btree
   end
 
   create_table "states", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

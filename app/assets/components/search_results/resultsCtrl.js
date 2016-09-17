@@ -8,7 +8,6 @@ angular.module('Degree_Not_Required')
 		then(function success(response){
 			$scope.job_results = response.data;
 			jobsService.postJobs(response.data,$location.search())
-			debugger
 		},
 			function error(){
 

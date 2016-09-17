@@ -12,10 +12,10 @@ class Api::JobsController < ApplicationController
 
 
 	def create
-		query = Query.find_or_create_by(keyword: params["formData"]["query"]) do |query| 
-			
+		query = Query.find_or_create_by(keyword: params["formData"]["query"]) do |q| 
 		end
-		binding.pry
+			binding.pry
+			
 	end
 
 	def ensure_json_request 
