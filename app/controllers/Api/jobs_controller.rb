@@ -12,9 +12,7 @@ class Api::JobsController < ApplicationController
 
 
 	def create
-		query = Query.find_or_create_by(keyword: params["formData"]["query"]) do |q| 
-		end
-			binding.pry
+		 Query.create_query(params)
 			
 	end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160917084655) do
+ActiveRecord::Schema.define(version: 20160917070254) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -61,17 +61,24 @@ ActiveRecord::Schema.define(version: 20160917084655) do
   end
 
   create_table "jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.string   "job_key"
-    t.integer  "company_id"
-    t.string   "job_title"
-    t.float    "longitude",  limit: 24
-    t.float    "latitude",   limit: 24
-    t.string   "platform"
+    t.string   "jobtitle"
+    t.string   "formattedLocation"
+    t.string   "source"
     t.datetime "date"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.index ["company_id"], name: "index_jobs_on_company_id", using: :btree
+    t.string   "snippet"
+    t.string   "url"
+    t.string   "onmousedown"
+    t.float    "latitude",              limit: 24
+    t.float    "longitude",             limit: 24
+    t.string   "job_key"
+    t.boolean  "sponsored"
+    t.boolean  "expired"
+    t.boolean  "indeedApply"
+    t.string   "formattedLocationFull"
+    t.string   "formattedRelativeTime"
+    t.text     "job_summary",           limit: 65535
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "jobs_queries", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -87,24 +94,11 @@ ActiveRecord::Schema.define(version: 20160917084655) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "query_jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "query_id"
-    t.integer  "jobs_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["jobs_id"], name: "index_query_jobs_on_jobs_id", using: :btree
-    t.index ["query_id"], name: "index_query_jobs_on_query_id", using: :btree
-  end
-
   create_table "states", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.integer  "country_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["country_id"], name: "index_states_on_country_id", using: :btree
   end
 
   add_foreign_key "cities", "states"
-  add_foreign_key "jobs", "companies"
-  add_foreign_key "states", "countries"
 end
