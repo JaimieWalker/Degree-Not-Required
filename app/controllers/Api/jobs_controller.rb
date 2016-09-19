@@ -13,6 +13,7 @@ class Api::JobsController < ApplicationController
 
 	def create
 		 Query.create_query(params)
+		 head :no_content
 			
 	end
 
