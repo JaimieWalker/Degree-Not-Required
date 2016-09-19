@@ -10,13 +10,15 @@ class CreateJobs < ActiveRecord::Migration[5.0]
       t.string :onmousedown
       t.float :latitude
       t.float :longitude
-      t.string :job_key
+      t.string :jobkey
       t.boolean :sponsored
       t.boolean :expired
       t.boolean :indeedApply
       t.string :formattedLocationFull
       t.string :formattedRelativeTime
       t.text :job_summary
+      t.integer :company_id, index: true, foreign_key: true
+      t.string :api
 
       t.timestamps
     end
