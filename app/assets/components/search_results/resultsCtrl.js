@@ -9,7 +9,10 @@ angular.module('Degree_Not_Required')
             jobsService.requestJobs($location.search()).
             then(function success(response){
     			$scope.job_results = response.data
-    			jobsService.postJobs(response.data,$location.search($scope.formData).search())
+    			debugger
+                if (response.data.length) {
+                    jobsService.postJobs(response.data,$location.search($scope.formData).search())
+                }
     		},
     			function error(response){
 

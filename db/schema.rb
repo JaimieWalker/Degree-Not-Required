@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 20160919195834) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.integer  "state_id"
     t.string   "api"
     t.datetime "created_at", null: false
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20160919195834) do
   end
 
   create_table "companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
+    t.string   "name",                  null: false
     t.string   "location"
     t.float    "latitude",   limit: 24
     t.float    "longitude",  limit: 24
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 20160919195834) do
   end
 
   create_table "states", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.integer  "country_id"
     t.string   "api"
     t.datetime "created_at", null: false
