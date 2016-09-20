@@ -67,7 +67,12 @@ object with all the the info needed for the api call and returns a raw json file
 	end
 # Gets results that don't have a degree
 	def get_results_with_no_degrees(json)
-		no_degree_jobs = remove_degrees_from_indeed(json)
+		begin
+			no_degree_jobs = remove_degrees_from_indeed(json)
+			@search_results = no_degree_jobs
+		rescue Errno::ETIMEDOUT => e
+			retry
+		end
 	end
 
 	def fill_page_with_results(json,num=9)

@@ -6,7 +6,8 @@ class Api::JobsController < ApplicationController
 		indeed = Indeed.new(Rails.application.secrets.INDEED_PUBLISHER_KEY)
 		indeed.construct_url(params)
 		json = indeed.api_request
-		results = indeed.fill_page_with_results(json)
+		results = indeed.get_results_with_no_degrees(json)
+		# fill_page_with_results(json)
 	    render :json => results	
 	end
 

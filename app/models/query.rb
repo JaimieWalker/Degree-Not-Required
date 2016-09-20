@@ -6,7 +6,7 @@ class Query < ApplicationRecord
 	def self.create_query(params)
 		 	query = find_or_create_by(keyword: params["formData"]["query"])
 		 transaction do 
-		 	params["jobs"].each do |json|
+		 	params["jobs"].each do |json| 
 		 		# O(n)
 		 		country = Country.create_country(json)
 		 		state = State.create_state(json,country)

@@ -1,6 +1,6 @@
 "use strict"
 angular.module('Degree_Not_Required')
-	.factory('jobsService', function($http){
+	.factory('jobsService', function($http,$httpParamSerializer){
 
 		let jobsService = {
 			 requestJobs : function(params){
