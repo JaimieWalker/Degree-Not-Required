@@ -34,7 +34,7 @@ class Indeed
 		@options[:q] = params["query"]
 		@options[:userip] = params["userip"]
 		@options[:useragent] = params["useragent"]
-		
+		@options[:l] = params["location"]
 		@url << concat_struct_to_url
 	end
 =begin 

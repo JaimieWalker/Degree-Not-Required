@@ -3,11 +3,15 @@ angular.module('Degree_Not_Required')
 .controller('homeCtrl', function($scope,jobsService,$location,$httpParamSerializer) {
 	
 	$scope.formData = {
-		"query" : sessionStorage.getItem("query")?"":sessionStorage.getItem("query")
+		"query" : sessionStorage.getItem("query")?sessionStorage.getItem("query"):"",
+         "location" : localStorage.getItem("location")?localStorage.getItem("location"):""
 	}   
-
-    $scope.saveSession = function(){
+// Need to refactor and abstract
+    $scope.saveSessionQuery = function(){
     	sessionStorage.setItem("query",$scope.formData.query);
+    }
+    $scope.saveLocalLocation = function(){
+        localStorage.setItem("location",$scope.formData.location);
     }
     
     $scope.search = function(){

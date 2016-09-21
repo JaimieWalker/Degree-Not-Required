@@ -1,13 +1,14 @@
 module RemoveDegree
 	ACCEPT = [/High School Diploma/i,
 		/GED certification/i,
-		/High school or equivalent/i
+		/High school or equivalent/i,
+		/G\.?E\.?D\.?/
 	]
 	REJECT = [/\bbachelor'?s\b/i,
 		/bachelor'?s/i,
 		/Master's Degree/i,
 		/\bbachelor'?s\s*degree\b/i,
-		/Required education:\W*? Associate/i,
+		/Required education:\W*? ?Associate/i,
 		/Required education:\W*? Bachelor’s/i,
 		/Required education:\W*? Bachelor/i,
 		/Required education:\W*? Associate's/i,
@@ -22,10 +23,10 @@ module RemoveDegree
 	
 	def remove_degrees_from_indeed(json)
 		return json["results"].select.each_with_index do |result,index|
-			job_page = Nokogiri::HTML(open(result["url"]))
-			job_summary = job_page.css("#job_summary").text
-			if(no_degree_required_indeed?(job_summary))
-				result["job_summary"] = job_summary
+			job_page = Nokogiri::HTML(open(result["url"]),nil,Encoding::UTF_8.to_s)
+			job_summary = job_page.css("#job_summary")
+			if(no_degree_required_indeed?(job_summary.text))
+				result["job_summary"] = job_summary.to_html
 			end
 		end
 

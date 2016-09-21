@@ -4,12 +4,12 @@ angular.module('Degree_Not_Required')
 		// If it is not empty, request jobs
         if (!(Object.keys($location.search()).length === 0)) {
             $scope.formData = {
-                "query" : sessionStorage.getItem("query")
+                "query" : sessionStorage.getItem("query"),
+                "location" : localStorage.getItem("location")
             }
             jobsService.requestJobs($location.search()).
             then(function success(response){
-    			$scope.job_results = response.data
-    			debugger
+                $scope.job_results = response.data
                 if (response.data.length) {
                     jobsService.postJobs(response.data,$location.search($scope.formData).search())
                 }
@@ -18,7 +18,15 @@ angular.module('Degree_Not_Required')
 
     			});
     	}
+        else{
+            $scope.formData = {
+                "query" : sessionStorage.getItem("query"),
+                "location" : localStorage.getItem("location")
+             }
+        }
 	};
+
+
 
 	$scope.search = function(){
 		jobsService.requestJobs($location.search($scope.formData).search()).
@@ -37,9 +45,13 @@ angular.module('Degree_Not_Required')
       return $sce.trustAsHtml(html);
     }
 
-    $scope.saveSession = function(){
-    	sessionStorage.setItem("query",$scope.formData.query);
+    $scope.saveSessionQuery = function(){
+        sessionStorage.setItem("query",$scope.formData.query);
     }
-
+   
+    $scope.saveLocalLocation = function(){
+        localStorage.setItem("location",$scope.formData.location);
+    }
+    
     
 });
