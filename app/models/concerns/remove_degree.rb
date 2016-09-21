@@ -3,7 +3,8 @@ module RemoveDegree
 		/GED certification/i,
 		/High school or equivalent/i
 	]
-	REJECT = [/\bbachelor'?s\b/,
+	REJECT = [/\bbachelor'?s\b/i,
+		/bachelor'?s/i,
 		/Master's Degree/i,
 		/\bbachelor'?s\s*degree\b/i,
 		/Required education:\W*? Associate/i,

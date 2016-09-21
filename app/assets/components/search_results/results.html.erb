@@ -3,13 +3,15 @@
 <h1>Search Results</h1>
 
 <dnr-search-form></dnr-search-form>
-<ol ng-model="job_results">	
+<ul ng-model="job_results">	
 	<li ng-repeat="job in job_results">
+		<p>{{job.formattedRelativeTime}}</p>
 		<span>{{job.jobtitle}}</span><br>
 		<span>{{job.company}}</span><br> 
 		<span>{{job.formattedLocationFull}}</span>
 		<p ng-bind-html="trustAsHtml(job.snippet)"></p>
+		<p>{{job.job_summary}}</p>
 	</li>
-</ol>
+</ul>
 
 </section>
