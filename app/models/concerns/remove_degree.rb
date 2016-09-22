@@ -8,13 +8,14 @@ module RemoveDegree
 		/bachelor'?s/i,
 		/Master's Degree/i,
 		/\bbachelor'?s\s*degree\b/i,
-		/Required education:\W*? ?Associate/i,
-		/Required education:\W*? Bachelor’s/i,
-		/Required education:\W*? Bachelor/i,
-		/Required education:\W*? Associate's/i,
+		/Required education:\W*? ?Bachelor’?s/i,
+		/Required education:\W*? ?Master'?s/i,
+		/Required education:\W*? ?Associate'?s/i,
 		/degree/i,
 		/graduating/i,
-		/graduates/i]
+		/graduates/i,
+		/BS\/MS ?(in)?/i]
+		
 	MAYBE = [/Bachelor’s degree preferred/i,
 		/Degree .* preferably/i,
 		/equivalent experience/i,
