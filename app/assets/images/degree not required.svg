@@ -9,13 +9,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="150mm"
-   height="150mm"
-   viewBox="0 0 531.49607 531.49607"
+   width="90mm"
+   height="90mm"
+   viewBox="0 0 318.89747 318.89747"
    id="svg4409"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="degree not required-white.svg"
+   sodipodi:docname="degree not required.svg"
    inkscape:export-filename="C:\Users\Jaimie\Desktop\Inkscape\degree not required.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
@@ -28,14 +28,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.979899"
-     inkscape:cx="137.16869"
-     inkscape:cy="340.20876"
+     inkscape:zoom="0.70000001"
+     inkscape:cx="81.256019"
+     inkscape:cy="230.0311"
      inkscape:document-units="px"
-     inkscape:current-layer="g4137"
+     inkscape:current-layer="g4386"
      showgrid="false"
      inkscape:window-width="1366"
-     inkscape:window-height="705"
+     inkscape:window-height="706"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -56,14 +56,17 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-520.86615)">
+     transform="translate(0,-733.46475)">
     <g
-       transform="translate(510.52283,191.62007)"
+       transform="translate(659.09424,371.62005)"
        id="g4386"
-       style="stroke:#5f8dd3">
+       style="stroke:#5f8dd3"
+       inkscape:transform-center-x="-37.158532"
+       inkscape:transform-center-y="-71.825093">
       <g
          id="g4137"
-         style="fill:none;stroke:#ffffff">
+         style="fill:none;stroke:#ffffff"
+         transform="translate(-248.85712,-71.428575)">
         <path
            style="opacity:1;fill:none;fill-opacity:1;stroke:#efefef;stroke-width:35;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
            id="path4379-8"

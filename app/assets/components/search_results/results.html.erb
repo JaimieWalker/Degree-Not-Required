@@ -1,17 +1,17 @@
+<%= stylesheet_link_tag "results" %>
 <title>{{formData.query}} jobs</title>
-<section ng-init="init()"> 
 <h1>Search Results</h1>
-
 <dnr-search-form></dnr-search-form>
-<ul ng-model="job_results">	
-	<li ng-repeat="job in job_results">
-		<p ng-bind-html="trustAsHtml(job.formattedRelativeTime)"></p>
-		<span ng-bind-html="trustAsHtml(job.jobtitle)"></span><br>
-		<span ng-bind-html="trustAsHtml(job.company)"></span><br> 
-		<span ng-bind-html="trustAsHtml(job.formattedLocationFull)"></span>
-		<p ng-bind-html="trustAsHtml(job.snippet)"></p>
-		<p ng-bind-html="trustAsHtml(job.job_summary)"></p>
-	</li>
-</ul>
+<section ng-init="init()"> 
+	<ul ng-model="job_results">	
+		<li ng-repeat="job in job_results">
+			<p ng-bind-html="trustAsHtml(job.formattedRelativeTime)"></p>
+			<span ng-bind-html="trustAsHtml(job.jobtitle)"></span><br>
+			<span ng-bind-html="trustAsHtml(job.company)"></span><br> 
+			<span ng-bind-html="trustAsHtml(job.formattedLocationFull)"></span>
+			<p ng-bind-html="trustAsHtml(job.snippet)"></p>
+			<hr>
+		</li>
+	</ul>
 
 </section>
