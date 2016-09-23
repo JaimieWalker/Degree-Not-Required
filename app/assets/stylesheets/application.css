@@ -28,6 +28,8 @@
    ========================================================================== */
 
 html {
+  height: auto;
+  width: auto;
   font-family: sans-serif; /* 1 */
   line-height: 1.15; /* 2 */
   -ms-text-size-adjust: 100%; /* 3 */
@@ -42,6 +44,7 @@ html {
  */
 
 body {
+  height: 100%;
   margin: 0;
 }
 

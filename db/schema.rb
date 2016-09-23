@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(version: 20160919195834) do
 
   create_table "queries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "keyword"
+    t.string   "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

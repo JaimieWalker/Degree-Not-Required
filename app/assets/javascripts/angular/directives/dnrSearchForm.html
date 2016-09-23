@@ -1,11 +1,11 @@
-<form ng-submit="search()">
-  <h1>JOB SEEKERS : </h1><br>
-  <input type="text" ng-model="formData.query" 
-  name="query" placeholder="Job Title,Company" 
-  ng-blur="saveSessionQuery()" required><br>
-  <input type="text" name="location" ng-model="formData.location" ng-blur="saveLocalLocation()" placeholder="State, City, Zip Code">
-  <br>
-  <input type="submit" value="search">
-
-<h1>Random Quotes</h1>
-</form>
+<img id="logo" src="assets/degree not required.svg">
+ <h1>Random Quotes</h1>
+<div class="form_container">
+	<form id="search_form" ng-submit="search()">
+	  <input type="text" ng-model="formData.query" 
+	  name="query" placeholder="Desired Job/Company" 
+	  ng-blur="saveSessionQuery()" required>
+	  <input type="text" name="location" ng-model="formData.location" ng-blur="saveLocalLocation()" placeholder="Desired Location">
+	  <input type="submit" value="search">
+	</form>
+</div>  		

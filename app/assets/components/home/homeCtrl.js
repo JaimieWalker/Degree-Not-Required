@@ -3,7 +3,7 @@ angular.module('Degree_Not_Required')
 .controller('homeCtrl', function($scope,jobsService,$location,$httpParamSerializer) {
 	
 	$scope.formData = {
-		"query" : sessionStorage.getItem("query") == "undefined"?"":sessionStorage.getItem("query"),
+		"query" : sessionStorage.getItem("query") == "undefined" || sessionStorage.getItem("query") == "null" ?"":sessionStorage.getItem("query"),
          "location" : localStorage.getItem("location")?localStorage.getItem("location"):""
 	}   
 // Need to refactor and abstract
