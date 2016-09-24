@@ -1,8 +1,12 @@
 <%= stylesheet_link_tag "results" %>
+<header>
+	<img alt="Degree Not Required Logo" id="logo" src="assets/degree not required.svg">
+	<span id="app_name">Degree Not Required</span>
+</header>
 <title>{{formData.query}} jobs</title>
-<h1>Search Results</h1>
-<dnr-search-form></dnr-search-form>
+	<dnr-search-form></dnr-search-form>
 <section ng-init="init()"> 
+<h1>Search Results</h1>
 	<ul ng-model="job_results">	
 		<li ng-repeat="job in job_results">
 			<p ng-bind-html="trustAsHtml(job.formattedRelativeTime)"></p>

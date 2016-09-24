@@ -10,11 +10,12 @@ body{
 	width: 100%; 
 }
 
+
 #search_form{
 	z-index: 1;
 	position: relative;
 	margin: auto;
-	flex-direction: row;
+	flex-direction: column;
     justify-content: space-evenly;
     display: flex;
     align-content: center;
@@ -62,6 +63,32 @@ li{
 }
 
 section{
+	clear: both;
 	width: 100%;
 	margin: auto;
+
 }
+.labels{
+	float: right;
+}
+
+
+#logo{
+	clear: right;
+	float: left;
+	margin: auto;
+	max-width: 15%;
+	max-width: 85px;
+	max-height: 85px;
+	height: auto;	
+}
+
+header{
+	margin: auto;
+	clear: both;
+	position: relative;
+	text-align: center;
+	font-size: 1.5em;
+}
+
+

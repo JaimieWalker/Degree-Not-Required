@@ -33,9 +33,9 @@ figcaption{
 
 
 #search_form{
+	border: solid 5px;
 	z-index: 1;
 	position: relative;
-	margin: auto;
 	flex-direction: column;
     justify-content: space-evenly;
     display: flex;
@@ -73,6 +73,7 @@ input[type="submit"]{
 	width: 100%;
 	background-color: rgba(232, 241, 244,.3);
 	height: auto;
+	border: solid 5px;
 }
 
 #app_name{
@@ -90,7 +91,12 @@ footer{
 
 }
 section{
+	clear: both;
 	margin: auto;
 	width: 100%;
 	height: 100%;
+}
+
+.labels{
+	margin: auto;
 }
