@@ -1,4 +1,4 @@
-body{
+html,body{
 	background: -webkit-linear-gradient(top, rgba(65,186,186,1) 0%,rgba(84,206,174,0.3) 100%),url('/assets/city.jpg') no-repeat center center fixed;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -6,8 +6,7 @@ body{
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	height: 100%; 
-	width: 100%; 
+	min-height: 100vh; 
 }
 
 
@@ -52,7 +51,7 @@ input[type="submit"]{
 
 ul{
 	box-shadow: 5px 5px 10px #245551;
-	background-color: rgba(232, 241, 244,.7);
+	background-color: rgba(232, 241, 244,.9);
 	margin: 0;
 	padding: 10px;
 }
@@ -67,6 +66,7 @@ section{
 	width: 100%;
 	margin: auto;
 
+
 }
 .labels{
 	float: right;
@@ -74,8 +74,6 @@ section{
 
 
 #logo{
-	clear: right;
-	float: left;
 	margin: auto;
 	max-width: 15%;
 	max-width: 85px;
@@ -89,6 +87,10 @@ header{
 	position: relative;
 	text-align: center;
 	font-size: 1.5em;
+}
+
+#app_name{
+	display: none;
 }
 
 
