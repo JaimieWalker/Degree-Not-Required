@@ -20,7 +20,7 @@ class Api::JobsController < ApplicationController
 
 	def ensure_json_request 
 	  return if request.format == :json  
-	  head :bad_request, :reset_content
+	  head :reset_content
 	end
 
 	def set_user_agent_and_ip

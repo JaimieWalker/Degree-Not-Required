@@ -30,6 +30,9 @@ input[name="query"]{
 	width: 250px;
 	height: 35px;
 	margin: 5px;
+	font-family: "Raleway",sans-serif;
+	color: #008086;
+	font-weight: 900;
 }
 
 input[name="location"]{
@@ -38,16 +41,36 @@ input[name="location"]{
 	height: 35px;
 	align-self: center;
 	margin: 5px;
-	
+	font-family: "Raleway",sans-serif;
+	color: #008086;
+	font-weight: 900;
 }
 
 input[type="submit"]{
+	flex-basis: 20%;
+	align-self: center;
+	font-family: "Raleway",sans-serif;
 	margin: auto;
-	display: block;
-	height: 35px;
-	margin: 5px;
+	position: relative;
+	border-color: #2187B7;
+	padding: 10px; 
+    font-size: 1.25em;
+    text-decoration: none;
+    background:  -webkit-linear-gradient(top, rgba(179,220,237,1) 0%,rgba(41,184,229,1) 50%,rgba(188,224,238,1) 100%);
+    color: white;
+    position: relative;
+    border-radius: 5px;
+    font-weight: bolder;
 }
 
+input[type="submit"]:active{
+	transform: translate(0px, 2px);
+    -webkit-transform: translate(0px, 2px);
+}
+
+input[type="submit"]:hover{
+	background-color: #7EE2C9;
+}
 
 ul{
 	box-shadow: 5px 5px 10px #245551;
@@ -93,4 +116,11 @@ header{
 	display: none;
 }
 
+#SR{
+	color: white;
+}
 
+.labels{
+	font-size: 1.25em;
+	color: white;
+}

@@ -2,10 +2,10 @@
 <html>
   <head>
   <base href="/">
-
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" sizes="any" href="favicon.png">
-
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
@@ -13,5 +13,6 @@
   </head>
   <body ng-app="Degree_Not_Required">
     <div ui-view></div>
+    <footer>&copy; 2016<script>new Date().getFullYear()>2016&&document.write("-"+new Date().getFullYear());</script>, Degree Not Required.</footer>
   </body>
 </html>

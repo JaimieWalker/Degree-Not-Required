@@ -34,6 +34,7 @@ html {
   line-height: 1.15; /* 2 */
   -ms-text-size-adjust: 100%; /* 3 */
   -webkit-text-size-adjust: 100%; /* 3 */
+  font-family: "Raleway",sans-serif;
 }
 
 /* Sections
@@ -478,4 +479,21 @@ template {
 
 [hidden] {
   display: none;
+}
+
+
+html{
+      height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+footer{
+  margin-top: auto;
+  color: white;
+  background-color: rgba(11, 137, 128,.7);
+  font-weight: 200;       
 }

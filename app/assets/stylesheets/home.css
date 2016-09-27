@@ -9,23 +9,24 @@ html,body{
 }
 
 figure{
-	float: left;
-	margin-left: auto;
+	padding: 10px;
+	margin: auto;
+	text-align: center;
 }
 
 figcaption{
-	float: left;
-	margin-left: auto;
-	padding: 5px
+	color: white;
+	font-size: 1.35em;
+	padding: 5px;
+	font-style: italic;
+	font-family:"Railway",sans-serif;
+	font-weight: 400;
 }
-
 #logo{
-	float: left;
 	padding-bottom: 15px;
-	margin: auto;
 	max-width: 15%;
-	min-width: 75px;
-	min-height: 75px;
+	min-width: 65px;
+	min-height: 65px;
 	height: auto;	
 }
 
@@ -44,24 +45,48 @@ figcaption{
 
 input[name="query"]{
 	position: relative;
-	/* right: 5px; */
+	color: #008086;
 	align-self: center;
 	width: 250px;
 	height: 35px;
 	margin: 5px;
+	font-family: "Raleway",sans-serif;
+	font-weight: 900;
 }
 
 input[name="location"]{
 	position: relative;
+	color: #008086;
 	width: 250px;
 	height: 35px;
 	align-self: center;
 	margin: 5px;
+	font-family: "Raleway",sans-serif;
+	font-weight: 900;
 }
-
 input[type="submit"]{
 	flex-basis: 20%;
 	align-self: center;
+	font-family: "Raleway",sans-serif;
+	margin: auto;
+	position: relative;
+	border-color: #2187B7;
+	padding: 10px; 
+    font-size: 1.25em;
+    text-decoration: none;
+    background:  -webkit-linear-gradient(top, rgba(179,220,237,1) 0%,rgba(41,184,229,1) 50%,rgba(188,224,238,1) 100%);
+    color: white;
+    border-radius: 5px;
+    font-weight: bolder;
+}
+
+input[type="submit"]:active{
+	transform: translate(0px, 2px);
+    -webkit-transform: translate(0px, 2px);
+}
+
+input[type="submit"]:hover{
+	background-color: #7EE2C9;
 }
 
 .form_container{
@@ -74,16 +99,13 @@ input[type="submit"]{
 
 #app_name{
 	text-align: center;
+	font-family:"Kaushan Script",sans-serif;
+	font-size: 2.5em;
+	color: white;
+	font-weight: 200;
 }
 
-footer{
-  margin: auto;  
-  position: absolute;        
-  bottom: 0px;         
-  left: 0px;        
-  width: 100%;        
 
-}
 section{
 	clear: both;
 	margin: auto;
@@ -93,4 +115,10 @@ section{
 
 .labels{
 	margin: auto;
+	color: white;
+	font-size: 1.25em;
+}
+
+h1 span{
+	color: white;
 }
