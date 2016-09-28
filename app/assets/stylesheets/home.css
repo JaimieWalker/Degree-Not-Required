@@ -1,12 +1,14 @@
-html,body{
-	background: -webkit-linear-gradient(top, rgba(65,186,186,1) 0%,rgba(84,206,174,0.3) 100%),url('/assets/city.jpg') no-repeat center center fixed;
+html{
+	background: -webkit-linear-gradient(top, rgba(65,186,186,.8) 0%,rgba(84,206,174,0.3) 100%), url('/assets/city.jpg') no-repeat center center fixed;
 	background-repeat: no-repeat;
+	background-attachment: fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	min-height: 100vh;	
+	min-height: 100vh;		
 }
+
 
 figure{
 	padding: 10px;

@@ -1,12 +1,10 @@
-html,body{
-	background: -webkit-linear-gradient(top, rgba(65,186,186,1) 0%,rgba(84,206,174,0.3) 100%),url('/assets/city.jpg') no-repeat center center fixed;
+html{
+	background: -webkit-linear-gradient(top, rgba(65,186,186,.8) 0%,rgba(84,206,174,0.3) 100%), url('/assets/city.jpg') no-repeat center center local;
 	background-repeat: no-repeat;
-	background-attachment: fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
-	background-size: cover;
-	min-height: 100vh; 
+	background-size: cover;	
 }
 
 
@@ -15,11 +13,11 @@ html,body{
 	position: relative;
 	margin: auto;
 	flex-direction: column;
-    justify-content: space-evenly;
-    display: flex;
-    align-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+	justify-content: space-evenly;
+	display: flex;
+	align-content: center;
+	align-items: center;
+	flex-wrap: wrap;
     width: 50%;
     padding: 5px;
 }
@@ -74,7 +72,7 @@ input[type="submit"]:hover{
 
 ul{
 	box-shadow: 5px 5px 10px #245551;
-	background-color: rgba(232, 241, 244,.9);
+	background-color: rgba(232, 241, 244,1);
 	margin: 0;
 	padding: 10px;
 }
@@ -117,7 +115,10 @@ header{
 }
 
 #SR{
+	position: relative;
+	padding-bottom: 5px;
 	color: white;
+	font-weight: 900
 }
 
 .labels{

@@ -3,12 +3,26 @@ class Api::JobsController < ApplicationController
 	before_action :ensure_json_request, :set_user_agent_and_ip  
 
 	def index
-		indeed = Indeed.new(Rails.application.secrets.INDEED_PUBLISHER_KEY)
-		indeed.construct_url(params)
-		json = indeed.api_request
-		results = indeed.get_results_with_no_degrees(json)
-		# fill_page_with_results(json)
-	    render :json => results	
+		if (Query.exists?(keyword: params["query"],location: params["location"]))
+			query = Query.find_by(keyword: params["query"],location: params["location"])
+			render :json => query.jobs
+		else
+			indeed = Indeed.new(Rails.application.secrets.INDEED_PUBLISHER_KEY)
+			indeed.construct_url(params)
+			json = indeed.api_request
+			results = indeed.get_results_with_no_degrees(json)
+			binding.pry
+			results.concat(indeed.next_page_of_results(indeed.options))
+			Thread.new do
+				if (results.size != 0)
+					params["jobs"] = results
+					create	
+				end
+			end
+			flash[:current_search] = indeed.options
+		    render :json => results		
+		end
+
 	end
 
 

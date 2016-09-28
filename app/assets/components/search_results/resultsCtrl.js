@@ -10,9 +10,9 @@ angular.module('Degree_Not_Required')
             jobsService.requestJobs($location.search()).
             then(function success(response){
                 $scope.job_results = response.data
-                if (response.data.length) {
-                    jobsService.postJobs(response.data,$location.search($scope.formData).search())
-                }
+                // if (response.data.length) {
+                    // jobsService.postJobs(response.data,$location.search($scope.formData).search())
+                // }
     		},
     			function error(response){
 
@@ -26,13 +26,13 @@ angular.module('Degree_Not_Required')
         }
 	};
 
-
+    
 
 	$scope.search = function(){
 		jobsService.requestJobs($location.search($scope.formData).search()).
 		then(function success(response){
 			$scope.job_results = response.data;
-			jobsService.postJobs(response.data,$location.search($scope.formData).search())
+			// jobsService.postJobs(response.data,$location.search($scope.formData).search())
 		},
 			function error(){
 

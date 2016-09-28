@@ -12,6 +12,7 @@ module RemoveDegree
 		/Required education:\W*? ?Master'?s/i,
 		/Required education:\W*? ?Associate'?s/i,
 		/degree/i,
+		/Bachelor of Science/i,
 		/graduating/i,
 		/graduates/i,
 		/BS\/MS ?(in)?/i,
