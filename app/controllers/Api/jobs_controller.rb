@@ -12,7 +12,8 @@ class Api::JobsController < ApplicationController
 			json = indeed.api_request
 			results = indeed.get_results_with_no_degrees(json)
 			binding.pry
-			results.concat(indeed.next_page_of_results(indeed.options))
+			more_results = indeed.next_page_of_results(indeed.options)
+			binding.pry
 			Thread.new do
 				if (results.size != 0)
 					params["jobs"] = results

@@ -24,7 +24,7 @@ class Indeed
 # Options that can be passed into the url
 	Url_Options = Struct.new(:v,:format,:callback,:l,:sort,
 		:radius,:st,:jt,:start,:limit,:fromage,:highlight,
-		:filter,:latlong,:co,:chnl,:userip,:useragent,:q,:total_results)
+		:filter,:latlong,:co,:chnl,:userip,:useragent,:q,:total_results,:page_num)
 # I know there is a gem for this but I want to do it myself
 	
 # Params is passed in from jobs controller in from the front end.
@@ -62,11 +62,13 @@ object with all the the info needed for the api call and returns a raw json file
 	def next_request
 		@url = String.new(@base_url) 
 		@options[:start] += (@options[:limit] - 1)
+		@options[:page_num] = @options[:start]/@options[:limit];
 		@url << concat_struct_to_url
 		return api_request
 	end
 # Gets results that don't have a degree
 # Takes a json file taken straight from the api
+# Adds to search results for this class
 	def get_results_with_no_degrees(json)
 		begin
 			no_degree_jobs = remove_degrees_from_indeed(json)
@@ -85,11 +87,11 @@ object with all the the info needed for the api call and returns a raw json file
 	end
 
 	def next_page_of_results(options)
+		@options[:start] == 0 if @options[:start]+=@options[:limit]
+		arr = []
 		if (!end_of_results?)
-			
 			@options = options
-			arr = get_results_with_no_degrees(next_request)	
-			binding.pry
+			arr.concat(get_results_with_no_degrees(next_request))	
 			return arr
 		end
 	end
