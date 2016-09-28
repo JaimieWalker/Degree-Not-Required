@@ -10,27 +10,29 @@ class Api::JobsController < ApplicationController
 			indeed = Indeed.new(Rails.application.secrets.INDEED_PUBLISHER_KEY)
 			indeed.construct_url(params)
 			json = indeed.api_request
-			results = indeed.get_results_with_no_degrees(json)
-			binding.pry
-			more_results = indeed.next_page_of_results(indeed.options)
-			binding.pry
+			first_results = indeed.get_results_with_no_degrees(json)
 			Thread.new do
-				if (results.size != 0)
-					params["jobs"] = results
+				if (first_results.size != 0)
+					params["jobs"] = first_results
 					create	
 				end
 			end
-			flash[:current_search] = indeed.options
-		    render :json => results		
+			session[:current_search] = indeed.options
+		    render :json => first_results		
 		end
-
+	end
+# Gets a new page of results
+	def next_page
+		indeed = Indeed.new(Rails.application.secrets.INDEED_PUBLISHER_KEY)
+		next_page_result = indeed.next_page_of_results(session[:current_search])
+		session[:current_search] = indeed.options
+		render :json => next_page_result	
 	end
 
 
 	def create
 		 Query.create_query(params)
-		 head :no_content
-			
+		 head :no_content	
 	end
 
 	def ensure_json_request 

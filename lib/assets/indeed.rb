@@ -18,13 +18,14 @@ class Indeed
 		@options[:latlong] = 1
 		@options[:limit] = 25
 		@options[:start] = 0
+		@options[:page_number] = 0
 		@search_results = []
 	end
 
 # Options that can be passed into the url
 	Url_Options = Struct.new(:v,:format,:callback,:l,:sort,
 		:radius,:st,:jt,:start,:limit,:fromage,:highlight,
-		:filter,:latlong,:co,:chnl,:userip,:useragent,:q,:total_results,:page_num)
+		:filter,:latlong,:co,:chnl,:userip,:useragent,:q,:total_results,:page_number)
 # I know there is a gem for this but I want to do it myself
 	
 # Params is passed in from jobs controller in from the front end.
@@ -51,7 +52,7 @@ object with all the the info needed for the api call and returns a raw json file
 	def concat_struct_to_url
 		opts = ""
 		 @options.each_pair{ |key,value|
-			next if value == nil || key == "total_results"
+			next if value == nil || key == "total_results" || key == "page_number"
 			opts << "&#{key.to_s}=#{URI.escape(value.to_s)}"
 		}
 		return opts
@@ -62,7 +63,7 @@ object with all the the info needed for the api call and returns a raw json file
 	def next_request
 		@url = String.new(@base_url) 
 		@options[:start] += (@options[:limit] - 1)
-		@options[:page_num] = @options[:start]/@options[:limit];
+		@options[:page_number] = @options[:start]/@options[:limit];
 		@url << concat_struct_to_url
 		return api_request
 	end
@@ -87,10 +88,11 @@ object with all the the info needed for the api call and returns a raw json file
 	end
 
 	def next_page_of_results(options)
-		@options[:start] == 0 if @options[:start]+=@options[:limit]
+		# options.symbolize_keys!
+		@options = Struct.new("Url_Options",*options.keys).new(*options.values)
+		# @options[:start] == 0 if @options[:start]+=@options[:limit-1]
 		arr = []
 		if (!end_of_results?)
-			@options = options
 			arr.concat(get_results_with_no_degrees(next_request))	
 			return arr
 		end

@@ -1,5 +1,7 @@
 angular.module('Degree_Not_Required')
 .controller('resultCtrl', function($scope,$location,jobsService,$sce,$httpParamSerializer) {
+    // Need to refactor $scope.init and $scope.search to make it DRYER
+    // Need to also move business logic into the factory, controller should only deal with the UI
 	$scope.init = function () {
 		// If it is not empty, request jobs
         if (!(Object.keys($location.search()).length === 0)) {
@@ -7,16 +9,15 @@ angular.module('Degree_Not_Required')
                 "query" : sessionStorage.getItem("query"),
                 "location" : localStorage.getItem("location")
             }
-            jobsService.requestJobs($location.search()).
-            then(function success(response){
-                $scope.job_results = response.data
-                // if (response.data.length) {
-                    // jobsService.postJobs(response.data,$location.search($scope.formData).search())
-                // }
-    		},
-    			function error(response){
+            $scope.search()
+      //       jobsService.requestJobs($location.search()).
+      //       then(function success(response){
+      //           $scope.job_results = response.data
+      //           $scope.get_next_num_pages()
+    		// },
+    		// 	function error(response){
 
-    			});
+    		// 	});
     	}
         else{
             $scope.formData = {
@@ -26,13 +27,27 @@ angular.module('Degree_Not_Required')
         }
 	};
 
-    
+    $scope.get_next_num_pages = function(num = 5){
+        while(num > 0){
+            num-=1;
+            if ($scope.job_results.length) {
+                jobsService.next_page($scope.job_results,$location.search($scope.formData).search()).
+                    then(function success(res){
+                        Array.prototype.push.apply($scope.job_results,res.data);
+                        debugger
+                    },function error(){
+                        debugger
+                    })
+            }
+        }
+    }
 
 	$scope.search = function(){
 		jobsService.requestJobs($location.search($scope.formData).search()).
 		then(function success(response){
+            debugger
 			$scope.job_results = response.data;
-			// jobsService.postJobs(response.data,$location.search($scope.formData).search())
+            $scope.get_next_num_pages();
 		},
 			function error(){
 
@@ -52,6 +67,7 @@ angular.module('Degree_Not_Required')
     $scope.saveLocalLocation = function(){
         localStorage.setItem("location",$scope.formData.location);
     }
+
     
     
 });

@@ -22,15 +22,20 @@ angular.module('Degree_Not_Required')
 				})
 			},
 
-			postJobs : function(data,params){
+			next_page : function(current_page,params){
 				return $http({
 					method : "POST",
-					url    : "api/jobs",
-					data   : JSON.stringify({ "formData":params ,"jobs":data }),
+					url    : "api/jobs/next_page",
+					data   : JSON.stringify({ "formData":params ,"jobs":current_page }),
 					headers : {
 						"Content-Type" : "application/json",
 						"accept"       : "application/json"
 					}
+				}).then(function(response){
+					return response
+				},
+				function(error){
+					return error
 				})
 			}
 
