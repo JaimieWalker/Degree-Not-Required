@@ -31,21 +31,23 @@ angular.module('Degree_Not_Required')
         while(num > 0){
             num-=1;
             if ($scope.job_results.length) {
+                        debugger
                 jobsService.next_page($scope.job_results,$location.search($scope.formData).search()).
                     then(function success(res){
                         Array.prototype.push.apply($scope.job_results,res.data);
-                        debugger
+                        
                     },function error(){
-                        debugger
+                    
                     })
             }
         }
     }
 
+
+
 	$scope.search = function(){
 		jobsService.requestJobs($location.search($scope.formData).search()).
 		then(function success(response){
-            debugger
 			$scope.job_results = response.data;
             $scope.get_next_num_pages();
 		},

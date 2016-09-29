@@ -3,10 +3,11 @@ class Api::JobsController < ApplicationController
 	before_action :ensure_json_request, :set_user_agent_and_ip  
 
 	def index
-		if (Query.exists?(keyword: params["query"],location: params["location"]))
-			query = Query.find_by(keyword: params["query"],location: params["location"])
-			render :json => query.jobs
-		else
+		# if (Query.exists?(keyword: params["query"],location: params["location"]))
+		# 	# Need to fix the returned results, so they are more comprehensive
+		# 	query = Query.find_by(keyword: params["query"],location: params["location"])
+		# 	render :json => query.jobs
+		# else
 			indeed = Indeed.new(Rails.application.secrets.INDEED_PUBLISHER_KEY)
 			indeed.construct_url(params)
 			json = indeed.api_request
@@ -18,8 +19,10 @@ class Api::JobsController < ApplicationController
 				end
 			end
 			session[:current_search] = indeed.options
+			# Experiment with taking all the data for that specific search result
+			# results_with_total = {"totalResults" => indeed.options[:total_results], "jobs" => first_results}
 		    render :json => first_results		
-		end
+		# end
 	end
 # Gets a new page of results
 	def next_page

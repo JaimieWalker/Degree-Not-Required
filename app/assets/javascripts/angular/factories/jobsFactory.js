@@ -37,6 +37,16 @@ angular.module('Degree_Not_Required')
 				function(error){
 					return error
 				})
+			},
+
+			paginate_jobs : function(jobs,numOfResults=15){
+				let count = 0
+				let pages = []
+				while(jobs.length){
+					pages.push([count,jobs.splice(0,numOfResults)])
+					count+=1;
+				}
+				return pages
 			}
 
 
