@@ -70,14 +70,14 @@ input[type="submit"]:hover{
 	background-color: #7EE2C9;
 }
 
-ul{
+.results{
 	box-shadow: 5px 5px 10px #245551;
 	background-color: rgba(232, 241, 244,1);
 	margin: 0;
 	padding: 10px;
 }
 
-li{
+.jobs{
 	list-style: none;
 	/* border: dashed 8px; */
 }
@@ -86,8 +86,6 @@ section{
 	clear: both;
 	width: 100%;
 	margin: auto;
-
-
 }
 .labels{
 	float: right;
@@ -124,4 +122,15 @@ header{
 .labels{
 	font-size: 1.25em;
 	color: white;
+}
+
+.page_num{
+	text-align: center;
+	margin: auto;
+}
+
+.page_num button{
+	margin-right: 3px;
+	padding: 10px;
+	background-color: #7EE2C9;
 }

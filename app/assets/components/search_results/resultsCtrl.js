@@ -2,7 +2,8 @@ angular.module('Degree_Not_Required')
 .controller('resultCtrl', function($scope,$location,jobsService,$sce,$httpParamSerializer) {
     // Need to refactor $scope.init and $scope.search to make it DRYER
     // Need to also move business logic into the factory, controller should only deal with the UI
-	$scope.init = function () {
+	$scope.currentPage = 0;   
+    $scope.init = function () {
 		// If it is not empty, request jobs
         if (!(Object.keys($location.search()).length === 0)) {
             $scope.formData = {
@@ -12,7 +13,7 @@ angular.module('Degree_Not_Required')
             $scope.search()
       //       jobsService.requestJobs($location.search()).
       //       then(function success(response){
-      //           $scope.job_results = response.data
+      //           $scope.jobResults = response.data
       //           $scope.get_next_num_pages()
     		// },
     		// 	function error(response){
@@ -27,16 +28,21 @@ angular.module('Degree_Not_Required')
         }
 	};
 
-    $scope.get_next_num_pages = function(num = 5){
+    $scope.get_next_num_pages = function(num = 10){
         while(num > 0){
             num-=1;
-            if ($scope.job_results.length) {
-                        debugger
-                jobsService.next_page($scope.job_results,$location.search($scope.formData).search()).
+            if (Object.keys($scope.jobResults).length) {
+
+                jobsService.next_page($scope.jobResults,$location.search($scope.formData).search()).
                     then(function success(res){
-                        Array.prototype.push.apply($scope.job_results,res.data);
+                        if (res.status == 500 || !res.data) {
+                            return 
+                        }else{
+                          jobsService.paginateJobs($scope.jobResults,res.data);
+                          $scope.pageNumbers = Object.keys($scope.jobResults);
+                        }
                         
-                    },function error(){
+                    },function error(res){
                     
                     })
             }
@@ -44,21 +50,24 @@ angular.module('Degree_Not_Required')
     }
 
 
-
-	$scope.search = function(){
-		jobsService.requestJobs($location.search($scope.formData).search()).
-		then(function success(response){
-			$scope.job_results = response.data;
+    $scope.search = function(){
+// Remove search results for every new search
+        $scope.jobResults = {}
+        
+        jobsService.requestJobs($location.search($scope.formData).search()).
+        then(function success(response){
+            $scope.jobResults = jobsService.paginateJobs($scope.jobResults,response.data)
             $scope.get_next_num_pages();
-		},
-			function error(){
+            $scope.pageNumbers = Object.keys($scope.jobResults);
+        },
+            function error(response){
 
-			});
-		// let qs = $httpParamSerializer($scope.formData)
-		// $scope.formData.query = $scope.formData.query.toLowerCase();
-	}
+            });
+        // let qs = $httpParamSerializer($scope.formData)
+        // $scope.formData.query = $scope.formData.query.toLowerCase();
+    }
 
-	 $scope.trustAsHtml = function(html) {
+     $scope.trustAsHtml = function(html) {
       return $sce.trustAsHtml(html);
     }
 
@@ -70,6 +79,19 @@ angular.module('Degree_Not_Required')
         localStorage.setItem("location",$scope.formData.location);
     }
 
-    
-    
+    // $scope.$watchCollection('jobResults', function (newValue, oldValue,scope) {
+    //     // if (newValue && newValue.length == 0) {
+    //     //     newValue = oldValue;
+    //     // }
+    //     // else{
+    //         
+    //         scope.jobResults = jobsService.paginateJobs(newValue); 
+    //     // }
+    // });
+
+
+    $scope.pageChange = function(num,clickEvent){
+        $scope.currentPage = num;
+        window.scrollTo(200,0);
+    }
 });

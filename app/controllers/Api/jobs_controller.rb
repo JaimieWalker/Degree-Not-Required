@@ -26,10 +26,22 @@ class Api::JobsController < ApplicationController
 	end
 # Gets a new page of results
 	def next_page
-		indeed = Indeed.new(Rails.application.secrets.INDEED_PUBLISHER_KEY)
-		next_page_result = indeed.next_page_of_results(session[:current_search])
-		session[:current_search] = indeed.options
-		render :json => next_page_result	
+		user_session = session[:current_search]
+		if (user_session["start"] > user_session["total_results"])
+			binding.pry
+			head :no_content		
+		else		
+			indeed = Indeed.new(Rails.application.secrets.INDEED_PUBLISHER_KEY)		
+			next_page_result = indeed.next_page_of_results(session[:current_search])
+			session[:current_search] = indeed.options
+			Thread.new do
+				if (next_page_result.size != 0)
+					params["jobs"] = next_page_result
+					create	
+				end
+			end
+			render :json => next_page_result
+		end	
 	end
 
 

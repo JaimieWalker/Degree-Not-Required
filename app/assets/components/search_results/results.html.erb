@@ -7,8 +7,8 @@
 	<dnr-search-form></dnr-search-form>
 <section ng-init="init()"> 
 <h3><span id="SR">Search Results</span></h3>
-	<ul ng-model="job_results">	
-		<li ng-repeat="job in job_results">
+	<ul class="results" ng-model="jobResults">	
+		<li class="jobs" ng-repeat="job in jobResults[currentPage]">
 			<p ng-bind-html="trustAsHtml(job.formattedRelativeTime)"></p>
 			<span ng-bind-html="trustAsHtml(job.jobtitle)"></span><br>
 			<span ng-bind-html="trustAsHtml(job.company)"></span><br> 
@@ -17,5 +17,9 @@
 			<hr>
 		</li>
 	</ul>
+	<div class="page_num" ng-model="pageNumbers">
+		<button ng-click="pageChange(num,$event)" ng-repeat="num in pageNumbers">
+		{{num}}</button>
+	</div>
 
 </section>

@@ -19,6 +19,7 @@ class Indeed
 		@options[:limit] = 25
 		@options[:start] = 0
 		@options[:page_number] = 0
+		@options[:sort] = "date"
 		@search_results = []
 	end
 
@@ -89,8 +90,7 @@ object with all the the info needed for the api call and returns a raw json file
 
 	def next_page_of_results(options)
 		# options.symbolize_keys!
-		binding.pry
-		@options = Struct.new("Next_Options",*options.keys).new(*options.values)
+		@options = Struct.new("Url_Options",*options.keys).new(*options.values)
 		# @options[:start] == 0 if @options[:start]+=@options[:limit-1]
 		arr = []
 		if (!end_of_results?)
