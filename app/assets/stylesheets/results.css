@@ -127,10 +127,18 @@ header{
 .page_num{
 	text-align: center;
 	margin: auto;
+	width: 50vw;
 }
 
 .page_num button{
+	margin-top: 30px;
 	margin-right: 3px;
 	padding: 10px;
 	background-color: #7EE2C9;
+}
+
+#prev{
+}
+
+#next{
 }
