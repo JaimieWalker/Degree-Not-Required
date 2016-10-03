@@ -82,6 +82,12 @@ input[type="submit"]:hover{
 	/* border: dashed 8px; */
 }
 
+ul a{
+	text-decoration: none;
+	color: black;
+
+}
+
 section{
 	clear: both;
 	width: 100%;
@@ -141,4 +147,12 @@ header{
 }
 
 #next{
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+hr{
+	border-color: gray;
 }

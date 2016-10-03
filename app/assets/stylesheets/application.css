@@ -28,6 +28,7 @@
    ========================================================================== */
 
 html {
+  
   height: auto;
   width: auto;
   font-family: sans-serif; /* 1 */
@@ -498,3 +499,6 @@ footer{
   font-weight: 200;       
 }
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}

@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html>
-  <head>
-  <base href="/">
+<html ng-cloak ng-app="Degree_Not_Required">
+  <head ng-cloak>
+  <base ng-cloak href="/">
+    <%= javascript_include_tag 'application' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" sizes="any" href="favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
   </head>
-  <body ng-app="Degree_Not_Required">
-    <div ui-view></div>
+  <body ng-cloak>
+    <div ng-cloak ui-view></div>
     
-    <footer>&copy; 2016<script>new Date().getFullYear()>2016&&document.write("-"+new Date().getFullYear());</script>, Degree Not Required.</footer>
+    <footer ng-cloak>&copy; 2016<script async>new Date().getFullYear()>2016&&document.write("-"+new Date().getFullYear());</script>, Degree Not Required.</footer>
   </body>
 </html>

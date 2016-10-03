@@ -3,16 +3,16 @@ angular.module('Degree_Not_Required')
 .controller('homeCtrl', function($scope,jobsService,$location,$httpParamSerializer) {
 	
 	$scope.formData = {
-		"query" : sessionStorage.getItem("query") == "undefined" || sessionStorage.getItem("query") == "null" ?"":sessionStorage.getItem("query"),
+		"query" : localStorage.getItem("query") == "undefined" || localStorage.getItem("query") == "null" ?"":localStorage.getItem("query"),
          "location" : localStorage.getItem("location")?localStorage.getItem("location"):""
 	}   
 // Need to refactor and abstract
     $scope.saveSessionQuery = function(){  
-        if (sessionStorage.getItem("undefined") === "undefined") {
-    	   sessionStorage.query = "";
+        if (localStorage.getItem("query") === "undefined") {
+    	   localStorage.query = "";
         }
         else{
-            sessionStorage.setItem("query",$scope.formData.query);
+            localStorage.setItem("query",$scope.formData.query);
         }
     }
     $scope.saveLocalLocation = function(){
@@ -22,7 +22,7 @@ angular.module('Degree_Not_Required')
     $scope.search = function(){
         let qs = $httpParamSerializer($scope.formData)
         $scope.formData.query = $scope.formData.query.toLowerCase();
-        $location.url("/jobs?" + qs);
+        $location.url("/jobs");
     }
 
 

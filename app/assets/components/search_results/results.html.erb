@@ -1,15 +1,17 @@
 <%= stylesheet_link_tag "results" %>
-<header>
+<header ng-cloak>
 	<a ng-href="/"><img alt="Degree Not Required Logo" id="logo" src="assets/degree not required.svg"></a>
 	<span id="app_name">Degree Not Required</span>
 </header>
-<title>{{formData.query}} jobs</title>
-	<dnr-search-form></dnr-search-form>
-<section ng-init="init()"> 
+<title ng-bind="formData.query + ' ' + 'Jobs'"></title>
+	<dnr-search-form ng-cloak></dnr-search-form>
+<section ng-cloak ng-init="init()"> 
 <h3><span id="SR">Search Results</span></h3>
-	<ul class="results" ng-model="jobResults">	
-		<li class="jobs" ng-repeat="job in jobResults[currentPage]">
-			<a ng-href="/jobs/{{job.jobkey}}" ng-click="showJob($event,$index)"><span ng-bind-html="trustAsHtml(job.jobtitle)"></span></a>
+	<ul ng-cloak class="results" ng-model="jobResults">	
+		<a ng-href="/jobs/{{job.jobkey}}" ng-click="showJob($event,$index)" ng-repeat="job in jobResults[currentPage]">
+		<li class="jobs" ng-cloak>
+		<span ng-bind-html="trustAsHtml(job.jobtitle)">
+			</span>
 			<br>
 			<p ng-bind-html="trustAsHtml(job.formattedRelativeTime)"></p>
 			<span ng-bind-html="trustAsHtml(job.company)"></span><br> 
@@ -17,11 +19,12 @@
 			<p ng-bind-html="trustAsHtml(job.snippet)"></p>
 			<hr>
 		</li>
+			</a>
 	</ul>
 	<div class="page_num" ng-model="numsToDisplay">
 	<button ng-click="prev($event)" id="prev">Prev</button>
-		<button ng-click="pageChange(num,$event)" ng-repeat="num in numsToDisplay">
-		{{num}}</button>
+		<button ng-click="pageChange(num,$event)" ng-repeat="num in numsToDisplay" ng-bind="num">
+		</button>
 	<button ng-click="next($event)" id="next">Next</button>
 	</div>
 

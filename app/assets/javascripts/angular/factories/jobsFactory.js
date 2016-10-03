@@ -1,20 +1,19 @@
 "use strict"
 angular.module('Degree_Not_Required')
 	.factory('jobsService', function($http,$httpParamSerializer){
-		var jobResults = {}
 		let jobsService = {
 			getJobResults : function(){
-				return jobResults;
+				return JSON.parse(localStorage.getItem("jobResults"))
 			},
 			setJobResults : function(jobs){
-				jobResults = jobs;
+				let json_jobs = JSON.stringify(jobs);
+				localStorage.setItem("jobResults",json_jobs);
 			},
 			 requestJobs : function(params){
 				return $http({
 					method : "GET",
 					url    : "api/jobs",
 					params : params,
-					cache  : true,
 					responseType : "json",
 					headers: {
 							   "Content-Type": "json",

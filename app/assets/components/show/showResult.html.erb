@@ -1,5 +1,12 @@
-<section>
-<div ng-model="jobResults">
- 	{{job}}
-</div>
+<%= stylesheet_link_tag "job" %>
+<section ng-model="jobResults">
+		<span ng-bind-html="trustAsHtml(job.jobtitle)"></span>
+		<p ng-bind-html="trustAsHtml(job.company)"></p>
+		<span ng-bind-html="trustAsHtml(job.formattedLocation)"></span>
+		<br>
+		<span ng-bind-html="trustAsHtml(job.formattedRelativeTime)"></span>
+		<br><br>
+		<span ng-bind-html="trustAsHtml(job.job_summary)"></span>
+		
+		<a ng-href="job.url"><p>Apply</p></a>
 </section>

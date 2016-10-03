@@ -9,17 +9,19 @@ angular.module('Degree_Not_Required')
     $scope.currentPage = 0; 
 
     $scope.init = function () {
-        // If it is not empty, request jobs
-        if (!(Object.keys($location.search()).length === 0)) {
             $scope.formData = {
-                "query" : sessionStorage.getItem("query"),
+                "query" : localStorage.getItem("query"),
                 "location" : localStorage.getItem("location")
             }
-            $scope.search();
+        // If it is not empty, request jobs
+            if (localStorage.getItem("query") === $scope.formData.query && localStorage.getItem("location") === $scope.formData.location) {
+                $scope.jobResults = jobsService.getJobResults();
+                
+                $scope.search();        
         }
         else{
             $scope.formData = {
-                "query" : sessionStorage.getItem("query") == "undefined" || sessionStorage.getItem("query") == "null" ?"":sessionStorage.getItem("query"),
+                "query" : localStorage.getItem("query") == "undefined" || localStorage.getItem("query") == "null" ?"":localStorage.getItem("query"),
                 "location" : localStorage.getItem("location")
              }
         }
@@ -49,9 +51,14 @@ angular.module('Degree_Not_Required')
 
 
     $scope.search = function(){
-// Remove search results for every new search        
-        jobsService.requestJobs($location.search($scope.formData).search()).
+// Remove search results for every new search
+    if ((localStorage.getItem("query") != $scope.formData.query && localStorage.getItem("location") != $scope.formData.location)) {
+           debugger
+            $scope.jobResults = {}  
+    }
+        jobsService.requestJobs($scope.formData).
         then(function success(response){
+              
             jobsService.setJobResults(jobsService.paginateJobs({},response.data))
             $scope.jobResults = jobsService.getJobResults();
             // $scope.get_next_num_pages();
@@ -70,7 +77,7 @@ angular.module('Degree_Not_Required')
     }
 
     $scope.saveSessionQuery = function(){
-        sessionStorage.setItem("query",$scope.formData.query);
+        localStorage.setItem("query",$scope.formData.query);
     }
    
     $scope.saveLocalLocation = function(){
@@ -114,9 +121,8 @@ angular.module('Degree_Not_Required')
     }
 // Need To refactor, ratchet code
     $scope.showJob = function($event,$index){
-
-        $rootScope.currentPage = $scope.currentPage
-        $rootScope.jobResults = jobsService.getJobResults();
-        $rootScope.currentJob = $index;
+        
+        localStorage.setItem("currentPage",$scope.currentPage);
+        localStorage.setItem("currentJob",$index);
     } 
 });
