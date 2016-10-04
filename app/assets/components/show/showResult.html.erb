@@ -1,10 +1,18 @@
 <%= stylesheet_link_tag "job" %>
-<section dnr-arrow-press ng-model="jobResults">
-		<span id="job_title" ng-bind-html="trustAsHtml(job.jobtitle)"></span>
-		<span id="company" ng-bind-html="trustAsHtml('Company: '+ job.company)"></span>
-		<span id="location" ng-bind-html="trustAsHtml(job.formattedLocation)"></span>
-		<span id="time_posted" ng-bind-html="trustAsHtml('Posted: '+ job.formattedRelativeTime)"></span>
-		<br><br>
-		<span id="job_summary" ng-bind-html="trustAsHtml(job.job_summary)"></span>
-		<a id="apply" target="_blank" ng-href="{{job.url}}"><button>Apply</button></a>
+<section dnr-arrow-press ng-model="job">
+<spinner id="spinner" name="show_spinner" img-src="assets/squares.gif"></spinner>
+	<a href="/jobs">Back to results</a>
+<title ng-bind="job.jobtitle"></title>
+		<div>
+			<span id="job_title" ng-bind-html="trustAsHtml(job.jobtitle)"></span>
+			<span id="company" ng-bind-html="trustAsHtml('Company: '+ job.company)"></span>
+			<span id="location" ng-bind-html="trustAsHtml(job.formattedLocation)"></span>
+			<span id="time_posted" ng-bind-html="trustAsHtml('Posted: '+ job.formattedRelativeTime)"></span>
+			<br><br>
+			<span id="job_summary" ng-bind-html="trustAsHtml(job.job_summary)"></span>
+			<a id="apply" target="_blank" ng-href="{{job.url}}"><button>Apply</button></a>
+		</div>
+<!-- Need to abstract -->
+		<button ng-click="prev($event)" id="prev">Prev</button>
+		<button ng-click="next($event)" id="next">Next</button>
 </section>

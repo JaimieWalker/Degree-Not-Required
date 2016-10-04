@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag "results" %>
+<spinner name="results_spinner" img-src="assets/squares.gif"></spinner>
 <header ng-cloak>
 	<a ng-href="/"><img alt="Degree Not Required Logo" id="logo" src="assets/degree not required.svg"></a>
 	<span id="app_name">Degree Not Required</span>
@@ -21,6 +22,7 @@
 		</li>
 			</a>
 	</ul>
+	<!-- Need to abstract in a directive -->
 	<div class="page_num" ng-model="numsToDisplay">
 	<button ng-click="prev($event)" id="prev">Prev</button>
 		<button ng-click="pageChange(num,$event)" ng-repeat="num in numsToDisplay" ng-bind="num">

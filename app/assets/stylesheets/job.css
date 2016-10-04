@@ -9,11 +9,23 @@ html{
 	min-height: 100vh;	
 }
 
-section{
+div[name="show_spinner"]{
+	  right: 0;
+	  position: fixed;
+	  z-index: 10;
+	  background-color: transparent;
+}
+
+div[name="show_spinner"] img{
+  height: 90px;
+}
+section a{
+	font-weight: 900;
+}
+section div{
 	padding-top: 20px;
 	margin: auto;
 	display: flex;
-	border: solid 1px;
 	flex-direction: column;
 	background-color: rgba(232, 241, 244,1);
 }
@@ -41,17 +53,30 @@ section{
 	align-self: center;
 	text-align: justify;
 	width: 95%;
-	font-weight: 500;
+	font-weight: 400;
 	font-style: oblique;
 }
 
 #apply{
 	align-self: center;
 	padding-bottom: 30px;
-	padding-top: 30px;
+	padding-top: 25px;
 }
 
+#prev{
+	float: left;
+}
 
+#next{
+	float: right;
+}
+
+section button{
+	margin-top: 10px;
+	margin-bottom: 15px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
 
 
 

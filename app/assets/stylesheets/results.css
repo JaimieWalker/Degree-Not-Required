@@ -6,6 +6,15 @@ html{
 	-o-background-size: cover;
 	background-size: cover;	
 }
+div[name="results_spinner"]{
+	  right: 0;
+	  position: fixed;
+	  z-index: 10;
+}
+
+div[name="results_spinner"] img{
+  height: 90px;
+}
 
 
 #search_form{

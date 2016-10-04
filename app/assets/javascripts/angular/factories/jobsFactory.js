@@ -1,6 +1,6 @@
 "use strict"
 angular.module('Degree_Not_Required')
-	.factory('jobsService', function($http,$httpParamSerializer){
+	.factory('jobsService', function(spinnerService,$http,$httpParamSerializer){
 		let jobsService = {
 			getJobResults : function(){
 				return JSON.parse(localStorage.getItem("jobResults"))

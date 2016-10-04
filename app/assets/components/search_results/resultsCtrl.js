@@ -1,5 +1,5 @@
 angular.module('Degree_Not_Required')
-.controller('resultCtrl', function($scope,$rootScope,$location,jobsService,$sce,$httpParamSerializer,$state) {
+.controller('resultCtrl', function(spinnerService,$scope,$rootScope,$location,jobsService,$sce,$httpParamSerializer,$state) {
  //    $scope.pageNumbers = [0,1,2,3,4,5,6,7,8,9,10];
  //    $scope.numsToDisplay = $scope.pageNumbers.slice($scope.currentPage,$scope.currentPage+5);
    
@@ -15,8 +15,7 @@ angular.module('Degree_Not_Required')
             }
         // If it is not empty, request jobs
             if (localStorage.getItem("query") === $scope.formData.query && localStorage.getItem("location") === $scope.formData.location) {
-                $scope.jobResults = jobsService.getJobResults();
-                
+                $scope.jobResults = jobsService.getJobResults(); 
                 $scope.search();        
         }
         else{
@@ -27,7 +26,9 @@ angular.module('Degree_Not_Required')
         }
     };
 
+// Need to abstract
     $scope.get_next_num_pages = function(num = 10){
+        spinnerService.show("results_spinner");
         while(num > 0){
             num-=1;
             if (Object.keys($scope.jobResults).length) {
@@ -44,30 +45,44 @@ angular.module('Degree_Not_Required')
                         
                     },function error(res){
                     
+                    }).finally(function(res){
+                        spinnerService.hide("results_spinner");
                     })
             }
         }
     }
 
+    // Helper method, keeps the array at a length of 5. Need to refactor for better UX 
+    // function arrayOf5(){
+    //     let val = $scope.pageNumbers.indexOf($scope.currentPage);
+    //     let test = $scope.pageNumbers.slice($scope.currentPage,$scope.currentPage+5)
+    //     if (test.length == 5) {
+    //         $scope.numsToDisplay = test;
+    //     } 
+    // }
+
 
     $scope.search = function(){
 // Remove search results for every new search
     if ((localStorage.getItem("query") != $scope.formData.query && localStorage.getItem("location") != $scope.formData.location)) {
-           debugger
             $scope.jobResults = {}  
     }
+    spinnerService.show('results_spinner');
         jobsService.requestJobs($scope.formData).
         then(function success(response){
               
             jobsService.setJobResults(jobsService.paginateJobs({},response.data))
             $scope.jobResults = jobsService.getJobResults();
-            // $scope.get_next_num_pages();
+            $scope.get_next_num_pages();
             $scope.pageNumbers = Object.keys($scope.jobResults);
-            arrayOf5();
+            // arrayOf5();
         },
             function error(response){
 
-            });
+            }).finally(function(){
+                spinnerService.hide('results_spinner');
+            })
+        ;
         // let qs = $httpParamSerializer($scope.formData)
         // $scope.formData.query = $scope.formData.query.toLowerCase();
     }
@@ -87,24 +102,17 @@ angular.module('Degree_Not_Required')
 
     $scope.pageChange = function(num,clickEvent){
         $scope.currentPage = num;
-        arrayOf5()
+        // arrayOf5()
         document.getElementById("#SR").scrollIntoView();
     }
     
-    // Helper method, keeps the array at a length of 5. Need to refactor for better UX 
-    function arrayOf5(){
-        let val = $scope.pageNumbers.indexOf($scope.currentPage);
-        let test = $scope.pageNumbers.slice($scope.currentPage,$scope.currentPage+5)
-        if (test.length == 5) {
-            $scope.numsToDisplay = test;
-        } 
-    }
+    
 
     $scope.prev = function(){ 
         if ($scope.currentPage != 0) {
             $scope.currentPage -= 1;
         }
-        arrayOf5()
+        // arrayOf5()
     }
 
     $scope.next = function(){
@@ -113,7 +121,7 @@ angular.module('Degree_Not_Required')
         } else{
             $scope.get_next_num_pages(5);
         }
-        arrayOf5();
+        // arrayOf5();
     }
 
     $scope.getJobResults = function(){
