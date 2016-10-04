@@ -15,8 +15,13 @@ module RemoveDegree
 		/Bachelor of Science/i,
 		/graduating/i,
 		/graduates/i,
-		/BS\/MS ?(in)?/i,
-		/BA/]
+		/\b(BS)?\/?(MS)? ?(in) ?\b/i,
+		/B.S./,
+		/M.S./,
+		/BA/,
+		/Ph.D./,
+		/P\.?H\.?D\.?/
+	]
 		
 	MAYBE = [/Bachelor’s degree preferred/i,
 		/Degree .* preferably/i,

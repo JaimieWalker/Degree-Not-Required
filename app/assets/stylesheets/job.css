@@ -1,6 +1,61 @@
-*{
-	font-size: 200px;
+html{
+	background: -webkit-linear-gradient(top, rgba(65,186,186,.8) 0%,rgba(84,206,174,0.3) 100%), url('/assets/city.jpg') no-repeat center center fixed;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	min-height: 100vh;	
 }
+
+section{
+	padding-top: 20px;
+	margin: auto;
+	display: flex;
+	border: solid 1px;
+	flex-direction: column;
+	background-color: rgba(232, 241, 244,1);
+}
+
+#job_title{
+	align-self: center;
+	font-weight: 900;
+}
+#company{
+	align-self: center;
+	font-weight: 900;
+}
+
+#location{
+	align-self: center;	
+	font-weight: 900;
+}
+
+#time_posted{
+	align-self: center;
+	font-weight: 900;
+}
+
+#job_summary{
+	align-self: center;
+	text-align: justify;
+	width: 95%;
+	font-weight: 500;
+	font-style: oblique;
+}
+
+#apply{
+	align-self: center;
+	padding-bottom: 30px;
+	padding-top: 30px;
+}
+
+
+
+
+
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }

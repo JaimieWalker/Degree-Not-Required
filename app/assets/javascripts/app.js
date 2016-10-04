@@ -18,6 +18,7 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider){
             url: '/jobs/:job',
             controller: "showCtrl",
             templateUrl: 'show/showResult.html'
+
         })
 	 $urlRouterProvider.otherwise('/');
 		

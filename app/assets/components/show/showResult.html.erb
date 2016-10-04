@@ -1,12 +1,10 @@
 <%= stylesheet_link_tag "job" %>
-<section ng-model="jobResults">
-		<span ng-bind-html="trustAsHtml(job.jobtitle)"></span>
-		<p ng-bind-html="trustAsHtml(job.company)"></p>
-		<span ng-bind-html="trustAsHtml(job.formattedLocation)"></span>
-		<br>
-		<span ng-bind-html="trustAsHtml(job.formattedRelativeTime)"></span>
+<section dnr-arrow-press ng-model="jobResults">
+		<span id="job_title" ng-bind-html="trustAsHtml(job.jobtitle)"></span>
+		<span id="company" ng-bind-html="trustAsHtml('Company: '+ job.company)"></span>
+		<span id="location" ng-bind-html="trustAsHtml(job.formattedLocation)"></span>
+		<span id="time_posted" ng-bind-html="trustAsHtml('Posted: '+ job.formattedRelativeTime)"></span>
 		<br><br>
-		<span ng-bind-html="trustAsHtml(job.job_summary)"></span>
-		
-		<a ng-href="job.url"><p>Apply</p></a>
+		<span id="job_summary" ng-bind-html="trustAsHtml(job.job_summary)"></span>
+		<a id="apply" target="_blank" ng-href="{{job.url}}"><button>Apply</button></a>
 </section>
