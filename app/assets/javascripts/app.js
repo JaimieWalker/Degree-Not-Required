@@ -1,5 +1,7 @@
 var app = angular.module("Degree_Not_Required", 
 	['ngResource','ui.router','templates','angularSpinners']);
+
+
 app.config(function($stateProvider, $urlRouterProvider,$locationProvider){
 	
     $locationProvider.html5Mode(true);
@@ -21,8 +23,78 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider){
 
         })
 	 $urlRouterProvider.otherwise('/');
-		
+
+
+     // $window.addEventListener('load', function(){
+     //     $http({
+     //             method : "POST",
+     //             url    : "api/increment_seeker",
+     //             responseType : "json",
+     //             headers: {
+     //                        "Content-Type": "json",
+     //                        "accept"      : "application/json"
+     //                      }
+     //            });
+        
+     // })
+
+     // $window.addEventListener('unload', function() {
+     //     $http({
+     //             method : "POST",
+     //             url    : "api/decrement_seeker",
+     //             responseType : "json",
+     //             headers: {
+     //                        "Content-Type": "json",
+     //                        "accept"      : "application/json"
+     //                      }
+     //            });
+        
+     // });
+
+
+    // angular.element(document).ready(function () {
+    //     debugger
+    //     $http({
+    //              method : "POST",
+    //              url    : "api/increment_seeker",
+    //              responseType : "json",
+    //              headers: {
+    //                         "Content-Type": "json",
+    //                         "accept"      : "application/json"
+    //                       }
+    //             });
+    // });        
 })
+
+app.run(["$http","$window","Poller", function($http,$window,Poller) {
+    $window.addEventListener('load', function(){
+         $http({
+                 method : "POST",
+                 url    : "/increment_seeker",
+                 responseType : "json",
+                 headers: {
+                            "Content-Type": "json",
+                            "accept"      : "application/json"
+                          }
+                });
+        
+     });
+
+     $window.addEventListener('beforeunload', function() {
+         $http({
+                 method : "POST",
+                 url    : "/decrement_seeker",
+                 responseType : "json",
+                 headers: {
+                            "Content-Type": "json",
+                            "accept"      : "application/json"
+                          }
+                });
+        
+     });
+}]);
+
+
 
 
 

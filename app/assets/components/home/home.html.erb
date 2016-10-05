@@ -7,7 +7,7 @@
  <figcaption>Hire For Skill </figcaption>	
 </figure>
 	<dnr-search-form ng-cloak></dnr-search-form>
-  <div id="visitor_counter">JOB SEEKERS: </div>
+  <div ng-model="job_seekers" id="visitor_counter" ng-bind="'Job Seekers: ' + job_seekers.response"></div>
   <br>
 </section>
 

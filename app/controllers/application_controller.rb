@@ -6,6 +6,25 @@ class ApplicationController < ActionController::Base
   	render "layouts/application.html.erb"
   end
 
+  def seekers
+    render :json => Rails.application.config.current_job_seekers
+  end
+
+  def increment_seeker
+    Rails.application.config.current_job_seekers+=1
+    head :no_content
+  end
+
+  def decrement_seeker
+    # if(Rails.application.config.current_job_seekers < 0)
+    #   Rails.application.config.current_job_seekers = 0  
+    # else
+      Rails.application.config.current_job_seekers -= 1
+    # end
+    head :no_content
+  end
+
+
   protected
 # Checks csrf token
   def verified_request?

@@ -28,7 +28,6 @@ class Api::JobsController < ApplicationController
 	def next_page
 		user_session = session[:current_search]
 		if (user_session["start"] > user_session["total_results"])
-			binding.pry
 			head :no_content		
 		else		
 			indeed = Indeed.new(Rails.application.secrets.INDEED_PUBLISHER_KEY)		
@@ -49,6 +48,7 @@ class Api::JobsController < ApplicationController
 		 Query.create_query(params)
 		 head :no_content	
 	end
+
 
 	def ensure_json_request 
 	  return if request.format == :json  

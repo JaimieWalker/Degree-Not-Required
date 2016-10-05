@@ -1,11 +1,11 @@
 angular.module('Degree_Not_Required')
-.controller('resultCtrl', function(spinnerService,$scope,$rootScope,$location,jobsService,$sce,$httpParamSerializer,$state) {
+.controller('resultCtrl', function(spinnerService,$scope,$rootScope,$location,jobsService,$sce,$httpParamSerializer,$state, Poller) {
  //    $scope.pageNumbers = [0,1,2,3,4,5,6,7,8,9,10];
  //    $scope.numsToDisplay = $scope.pageNumbers.slice($scope.currentPage,$scope.currentPage+5);
    
     // Need to refactor $scope.init and $scope.search to make it DRYER
     // Need to also move business logic into the factory, controller should only deal with the UI
-    
+    $scope.job_seekers = Poller.job_seekers;
     $scope.currentPage = 0; 
 
     $scope.init = function () {
@@ -28,12 +28,13 @@ angular.module('Degree_Not_Required')
 
 // Need to abstract
     $scope.get_next_num_pages = function(num = 10){
-        spinnerService.show("results_spinner");
+             $scope.disableButtons("hidden");
+             spinnerService.show("results_spinner");
+       let qs = $httpParamSerializer($scope.formData)
         while(num > 0){
             num-=1;
-            if (Object.keys($scope.jobResults).length) {
-
-                jobsService.next_page($scope.jobResults,$location.search($scope.formData).search()).
+            // if (Object.keys($scope.jobResults).length || ) {
+                jobsService.next_page($scope.jobResults,qs).
                     then(function success(res){
                         if (res.status == 500 || !res.data) {
                             return 
@@ -45,10 +46,11 @@ angular.module('Degree_Not_Required')
                         
                     },function error(res){
                     
-                    }).finally(function(res){
+                    }).finally(function(){
+                        $scope.disableButtons("visible");
                         spinnerService.hide("results_spinner");
                     })
-            }
+            // }
         }
     }
 
@@ -60,9 +62,16 @@ angular.module('Degree_Not_Required')
     //         $scope.numsToDisplay = test;
     //     } 
     // }
+    $scope.disableButtons = function(visibility){
+        let buttons = document.getElementsByTagName("button");
+        for (let i = 0; i < buttons.length; i++) {
+                buttons[i].style.visibility = visibility;   
+        }
 
+    }
 
     $scope.search = function(){
+        $scope.disableButtons("hidden");
 // Remove search results for every new search
     if ((localStorage.getItem("query") != $scope.formData.query && localStorage.getItem("location") != $scope.formData.location)) {
             $scope.jobResults = {}  
@@ -70,7 +79,6 @@ angular.module('Degree_Not_Required')
     spinnerService.show('results_spinner');
         jobsService.requestJobs($scope.formData).
         then(function success(response){
-              
             jobsService.setJobResults(jobsService.paginateJobs({},response.data))
             $scope.jobResults = jobsService.getJobResults();
             $scope.get_next_num_pages();
@@ -80,10 +88,12 @@ angular.module('Degree_Not_Required')
             function error(response){
 
             }).finally(function(){
+                // let qs = $httpParamSerializer($scope.formData)
+                // $location.path().replace()
+                $scope.disableButtons("visible");
                 spinnerService.hide('results_spinner');
             })
         ;
-        // let qs = $httpParamSerializer($scope.formData)
         // $scope.formData.query = $scope.formData.query.toLowerCase();
     }
 
@@ -116,7 +126,7 @@ angular.module('Degree_Not_Required')
     }
 
     $scope.next = function(){
-        if ($scope.currentPage != $scope.pageNumbers[$scope.pageNumbers.length-1]) {
+        if ($scope.currentPage !== parseInt($scope.pageNumbers[$scope.pageNumbers.length-1])) {
             $scope.currentPage += 1;
         } else{
             $scope.get_next_num_pages(5);
@@ -129,7 +139,6 @@ angular.module('Degree_Not_Required')
     }
 // Need To refactor, ratchet code
     $scope.showJob = function($event,$index){
-        
         localStorage.setItem("currentPage",$scope.currentPage);
         localStorage.setItem("currentJob",$index);
     } 

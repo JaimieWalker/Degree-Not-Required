@@ -20,6 +20,7 @@ class Indeed
 		@options[:start] = 0
 		@options[:page_number] = 0
 		@options[:sort] = "date"
+		@options[:filter] = 1;
 		@search_results = []
 	end
 
