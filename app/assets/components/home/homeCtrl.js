@@ -1,7 +1,6 @@
 // Should set up filters and values for searching
 angular.module('Degree_Not_Required')
 .controller('homeCtrl', function($http,$scope,jobsService,$location,$httpParamSerializer,Poller) {
-   debugger
     $scope.job_seekers = Poller.job_seekers;
 	$scope.formData = {
 		"query" : localStorage.getItem("query") == "undefined" || localStorage.getItem("query") == "null" ?"":localStorage.getItem("query"),

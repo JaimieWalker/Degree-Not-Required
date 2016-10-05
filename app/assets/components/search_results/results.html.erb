@@ -24,10 +24,10 @@
 	</ul>
 	<!-- Need to abstract in a directive -->
 	<div class="page_num" ng-model="numsToDisplay">
-	<button ng-click="prev($event)" id="prev">Prev</button>
-		<button ng-click="pageChange(num,$event)" ng-repeat="num in numsToDisplay" ng-bind="num">
-		</button>
-	<button ng-click="next($event)" id="next">Next</button>
+	<button ng-click="prev($event)" id="prev"><</button>
+		<!-- <button ng-click="pageChange(num,$event)" ng-repeat="num in numsToDisplay" ng-bind="num">
+		</button> -->
+	<button ng-click="next($event)" id="next">></button>
 	</div>
 
 </section>

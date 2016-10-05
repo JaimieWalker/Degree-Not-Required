@@ -27,13 +27,13 @@ angular.module('Degree_Not_Required')
     };
 
 // Need to abstract
-    $scope.get_next_num_pages = function(num = 10){
-             $scope.disableButtons("hidden");
+    $scope.get_next_num_pages = function(num = 5){
+             $scope.disableButtons("hidden","none");
              spinnerService.show("results_spinner");
        let qs = $httpParamSerializer($scope.formData)
         while(num > 0){
             num-=1;
-            // if (Object.keys($scope.jobResults).length || ) {
+            if (Object.keys($scope.jobResults).length || Object.keys($scope.jobResults).length == 0 ) {
                 jobsService.next_page($scope.jobResults,qs).
                     then(function success(res){
                         if (res.status == 500 || !res.data) {
@@ -42,15 +42,20 @@ angular.module('Degree_Not_Required')
                           jobsService.setJobResults(jobsService.paginateJobs($scope.jobResults,res.data));
                           $scope.jobResults = jobsService.getJobResults();
                           $scope.pageNumbers = Object.keys($scope.jobResults);
+                          if ($scope.pageNumbers.length <= 2) {
+                            $scope.disableButtons("hidden","none");
+                            spinnerService.show("results_spinner")
+                            $scope.get_next_num_pages(1);
+                          }
                         }
                         
                     },function error(res){
                     
                     }).finally(function(){
-                        $scope.disableButtons("visible");
+                        $scope.disableButtons("visible","initial");
                         spinnerService.hide("results_spinner");
                     })
-            // }
+            }
         }
     }
 
@@ -62,16 +67,17 @@ angular.module('Degree_Not_Required')
     //         $scope.numsToDisplay = test;
     //     } 
     // }
-    $scope.disableButtons = function(visibility){
+    $scope.disableButtons = function(visibility,display){
         let buttons = document.getElementsByTagName("button");
         for (let i = 0; i < buttons.length; i++) {
-                buttons[i].style.visibility = visibility;   
+                buttons[i].style.visibility = visibility;
+                buttons[i].style.display = display;  
         }
 
     }
 
     $scope.search = function(){
-        $scope.disableButtons("hidden");
+        $scope.disableButtons("hidden","none");
 // Remove search results for every new search
     if ((localStorage.getItem("query") != $scope.formData.query && localStorage.getItem("location") != $scope.formData.location)) {
             $scope.jobResults = {}  
@@ -81,17 +87,18 @@ angular.module('Degree_Not_Required')
         then(function success(response){
             jobsService.setJobResults(jobsService.paginateJobs({},response.data))
             $scope.jobResults = jobsService.getJobResults();
-            $scope.get_next_num_pages();
+            $scope.get_next_num_pages(1);
             $scope.pageNumbers = Object.keys($scope.jobResults);
             // arrayOf5();
         },
             function error(response){
-
+                alert("something broke");
             }).finally(function(){
                 // let qs = $httpParamSerializer($scope.formData)
                 // $location.path().replace()
-                $scope.disableButtons("visible");
-                spinnerService.hide('results_spinner');
+                if (Object.keys($scope.jobResults).length <= 2) {}
+                    $scope.disableButtons("hidden","none");
+                    spinnerService.show('results_spinner');
             })
         ;
         // $scope.formData.query = $scope.formData.query.toLowerCase();
@@ -129,7 +136,7 @@ angular.module('Degree_Not_Required')
         if ($scope.currentPage !== parseInt($scope.pageNumbers[$scope.pageNumbers.length-1])) {
             $scope.currentPage += 1;
         } else{
-            $scope.get_next_num_pages(5);
+            $scope.get_next_num_pages(1);
         }
         // arrayOf5();
     }

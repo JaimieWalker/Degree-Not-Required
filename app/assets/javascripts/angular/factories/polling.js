@@ -3,7 +3,6 @@ angular.module('Degree_Not_Required')
   let job_seekers = { response: {}}
   let poller = function() {
     $http.get('/job_seekers',  { cache: false}).then(function(res) {
-    	debugger
       job_seekers.response = res.data;
       $timeout(poller, 1000);
     });

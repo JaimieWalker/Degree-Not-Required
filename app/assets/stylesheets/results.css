@@ -1,5 +1,5 @@
 html{
-	background: -webkit-linear-gradient(top, rgba(65,186,186,.8) 0%,rgba(84,206,174,0.3) 100%), url('/assets/city.jpg') no-repeat center center local;
+	background: -webkit-linear-gradient(top, rgba(65,186,186,.5) 0%,rgba(84,206,174,0.5) 100%), url('/assets/city.jpg') no-repeat center center fixed;
 	background-repeat: no-repeat;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -58,7 +58,6 @@ input[type="submit"]{
 	align-self: center;
 	font-family: "Raleway",sans-serif;
 	margin: auto;
-	position: relative;
 	border-color: #2187B7;
 	padding: 10px; 
     font-size: 1.25em;
@@ -148,13 +147,40 @@ header{
 	margin-top: 30px;
 	margin-right: 3px;
 	padding: 10px;
-	background-color: #7EE2C9;
 }
 
 #prev{
+	font-family: "Raleway",sans-serif;
+	margin: auto;
+	border-color: #2187B7;
+	margin-top: 15px;
+	padding: 10px; 
+    font-size: 1.25em;
+    text-decoration: none;
+    background:  -webkit-linear-gradient(top, rgba(179,220,237,1) 0%,rgba(41,184,229,1) 50%,rgba(188,224,238,1) 100%);
+    color: white;
+    position: relative;
+    border-radius: 5px;
+    font-weight: bolder;
+    right: 25vw;
+    width: 100px;
 }
 
-#next{
+#next{	
+    left: 25vw;
+	font-family: "Raleway",sans-serif;
+	margin-top: 15px;
+	margin: auto;
+	border-color: #2187B7;
+	padding: 10px; 
+    font-size: 1.25em;
+    text-decoration: none;
+    background:  -webkit-linear-gradient(top, rgba(179,220,237,1) 0%,rgba(41,184,229,1) 50%,rgba(188,224,238,1) 100%);
+    color: white;
+    position: relative;
+    border-radius: 5px;
+    font-weight: bolder;
+    width: 100px;
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
