@@ -16,7 +16,7 @@ angular.module('Degree_Not_Required')
         // If it is not empty, request jobs
             if (localStorage.getItem("query") === $scope.formData.query && localStorage.getItem("location") === $scope.formData.location) {
                 $scope.jobResults = jobsService.getJobResults(); 
-                $scope.search();        
+                $scope.search();                       
         }
         else{
             $scope.formData = {
@@ -42,7 +42,7 @@ angular.module('Degree_Not_Required')
                           jobsService.setJobResults(jobsService.paginateJobs($scope.jobResults,res.data));
                           $scope.jobResults = jobsService.getJobResults();
                           $scope.pageNumbers = Object.keys($scope.jobResults);
-                          if ($scope.pageNumbers.length <= 2) {
+                          if ($scope.pageNumbers.length <= 1) {
                             $scope.disableButtons("hidden","none");
                             spinnerService.show("results_spinner")
                             $scope.get_next_num_pages(1);
@@ -52,8 +52,11 @@ angular.module('Degree_Not_Required')
                     },function error(res){
                     
                     }).finally(function(){
-                        $scope.disableButtons("visible","initial");
-                        spinnerService.hide("results_spinner");
+                        // Need to past total results to front end
+                        if ($scope.pageNumbers.length > 1 ) {  
+                            $scope.disableButtons("visible","initial");
+                            spinnerService.hide("results_spinner");
+                        }
                     })
             }
         }
@@ -79,28 +82,31 @@ angular.module('Degree_Not_Required')
     $scope.search = function(){
         $scope.disableButtons("hidden","none");
 // Remove search results for every new search
-    if ((localStorage.getItem("query") != $scope.formData.query && localStorage.getItem("location") != $scope.formData.location)) {
+    if ((localStorage.getItem("query") !== $scope.formData.query && localStorage.getItem("location") !== $scope.formData.location)) {
             $scope.jobResults = {}  
     }
     spinnerService.show('results_spinner');
         jobsService.requestJobs($scope.formData).
         then(function success(response){
-            jobsService.setJobResults(jobsService.paginateJobs({},response.data))
+            jobsService.setJobResults(jobsService.paginateJobs($scope.jobResults,response.data))
             $scope.jobResults = jobsService.getJobResults();
             $scope.get_next_num_pages(1);
             $scope.pageNumbers = Object.keys($scope.jobResults);
             // arrayOf5();
         },
             function error(response){
-                alert("something broke");
-            }).finally(function(){
-                // let qs = $httpParamSerializer($scope.formData)
-                // $location.path().replace()
-                if (Object.keys($scope.jobResults).length <= 2) {}
-                    $scope.disableButtons("hidden","none");
-                    spinnerService.show('results_spinner');
+
             })
-        ;
+        // .finally(function(){
+        //         // let qs = $httpParamSerializer($scope.formData)
+        //         // $location.path().replace()
+        //         if (Object.keys($scope.jobResults).length <= 2) {
+
+        //         }
+        //             $scope.disableButtons("hidden","none");
+        //             spinnerService.show('results_spinner');
+        //     })
+        
         // $scope.formData.query = $scope.formData.query.toLowerCase();
     }
 

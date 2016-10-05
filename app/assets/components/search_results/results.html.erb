@@ -6,7 +6,7 @@
 </header>
 <title ng-bind="formData.query + ' ' + 'Jobs'"></title>
 	<dnr-search-form ng-cloak></dnr-search-form>
-<section ng-cloak ng-init="init()"> 
+<section ng-init="init()" ng-cloak> 
 <h3><span id="SR">Search Results</span></h3>
 	<ul ng-cloak class="results" ng-model="jobResults">	
 		<a ng-href="/jobs/{{job.jobkey}}" ng-click="showJob($event,$index)" ng-repeat="job in jobResults[currentPage]">

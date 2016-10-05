@@ -47,6 +47,9 @@ module RemoveDegree
 			return true if(job_summary =~ pattern)
 		end
 		# Should integrate maybe sometime
+		MAYBE.each do |pattern|
+			return true if (job_summary =~ pattern)
+		end
 
 		REJECT.each do |pattern|
 			return false if (job_summary =~ pattern)

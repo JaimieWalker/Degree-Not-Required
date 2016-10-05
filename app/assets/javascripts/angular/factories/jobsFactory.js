@@ -47,6 +47,9 @@ angular.module('Degree_Not_Required')
 // New Jobs is an array, and old Jobs is an object. We need to add the array to the objects
 			paginateJobs : function(oldJobs,newJobs,numOfResults=15){
 				let count = 0
+				if (!oldJobs) {
+					oldJobs = [];
+				}
 				if (Object.keys(oldJobs).length === 0 && newJobs) {
 					while(newJobs.length){
 						oldJobs[count] = newJobs.splice(0,numOfResults)

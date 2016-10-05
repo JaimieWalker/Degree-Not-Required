@@ -28,15 +28,13 @@ angular.module("Degree_Not_Required")
 						let nextPage = (parseInt(scope.currentPage) + 1).toString();
 							if (scope.currentJob === scope.jobResults[scope.currentPage].length-1 && scope.jobResults[nextPage]) {
 								scope.currentPage = nextPage;
-								scope.job = scope.jobResults[scope.currentPage][0];
+								scope.currentJob = 0;
+								scope.job = scope.jobResults[scope.currentPage][scope.currentJob];
 							} //If the current job is the last in the list, and there are no more results get the next 2 pages
-							else if(scope.currentJob === scope.jobResults[scope.currentPage].length-1 && !scope.jobResults[nextPage]){
-								scope.get_next_num_pages(2);
+							else if(scope.currentJob === scope.jobResults[scope.currentPage].length-1 && (!scope.jobResults[nextPage] || !scope.jobResults[scope.currentJob+1])){
+								scope.get_next_num_pages(1);
 								//Do nothing
-							}//If there is no next page and there are no more results, because a page can have maybe 4 or 12 results, get the next results
-							else if(!scope.jobResults[nextPage] && !scope.jobResults[scope.currentPage][scope.currentJob+1]){
-								scope.get_next_num_pages(2);
-							}
+							}//If I am on the current page and there are no more results, because a page can have maybe 4 or 12 results, get the next results
 							else{
 								scope.currentJob+=1
 								scope.job = scope.jobResults[scope.currentPage][scope.currentJob];
