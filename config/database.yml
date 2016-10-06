@@ -49,6 +49,9 @@ development:
 #
 production:
   <<: *default
-  database: Degree-Not-Required_production
-  username: Degree-Not-Required
-  password: <%= ENV['DEGREE-NOT-REQUIRED_DATABASE_PASSWORD'] %>
+  database: <%= Rails.application.secrets.DATABASE %>
+  username: <%=Rails.application.secrets.DATABASE_USERNAME %>
+  password: <%=Rails.application.secrets.DATABASE_PASSWORD %>
+  host: <%=Rails.application.secrets.DATABASE_HOST %>
+  port: <%=Rails.application.secrets.DATABASE_PORT %>
+  pool: 100
