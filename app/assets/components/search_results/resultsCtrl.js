@@ -7,23 +7,35 @@ angular.module('Degree_Not_Required')
     // Need to also move business logic into the factory, controller should only deal with the UI
     $scope.job_seekers = Poller.job_seekers;
     $scope.currentPage = 0; 
+    $scope.differentSearch = function(){
+        
+        if (sessionStorage.prev_query === localStorage.query && (sessionStorage.prev_location !== localStorage.location)) {
+            return true;
+        }else if ((sessionStorage.prev_query !== localStorage.query) && (sessionStorage.prev_location === localStorage.location )) {
+            return true
+        }else if (sessionStorage.prev_query !== localStorage.query) {
+            return true;
+        }
+        else if(sessionStorage.prev_location !== localStorage.location)
+            return true
+        else {
+            return false
+        }
+    }
 
     $scope.init = function () {
             $scope.formData = {
                 "query" : localStorage.getItem("query"),
                 "location" : localStorage.getItem("location")
             }
-        // If it is not empty, request jobs
-            if (localStorage.getItem("query") === $scope.formData.query && localStorage.getItem("location") === $scope.formData.location) {
-                $scope.jobResults = jobsService.getJobResults(); 
-                $scope.search();                       
-        }
-        else{
-            $scope.formData = {
-                "query" : localStorage.getItem("query") == "undefined" || localStorage.getItem("query") == "null" ?"":localStorage.getItem("query"),
-                "location" : localStorage.getItem("location")
-             }
-        }
+        // If it is not a different search results and add more
+            if (!$scope.differentSearch()) {
+                $scope.jobResults = jobsService.getJobResults();
+                $scope.pageNumbers = Object.keys($scope.jobResults); 
+                $scope.search();                     
+            }else{
+                $scope.search();
+            }
     };
 
 // Need to abstract
@@ -42,7 +54,7 @@ angular.module('Degree_Not_Required')
                           jobsService.setJobResults(jobsService.paginateJobs($scope.jobResults,res.data));
                           $scope.jobResults = jobsService.getJobResults();
                           $scope.pageNumbers = Object.keys($scope.jobResults);
-                          if ($scope.pageNumbers.length <= 1) {
+                          if ($scope.pageNumbers.length <= 1 || $scope.jobResults[$scope.currentPage].length < 10) {
                             $scope.disableButtons("hidden","none");
                             spinnerService.show("results_spinner")
                             $scope.get_next_num_pages(1);
@@ -80,14 +92,18 @@ angular.module('Degree_Not_Required')
     }
 
     $scope.search = function(){
-        $scope.disableButtons("hidden","none");
-// Remove search results for every new search
-    if ((localStorage.getItem("query") !== $scope.formData.query && localStorage.getItem("location") !== $scope.formData.location)) {
-            $scope.jobResults = {}  
-    }
+        if ($scope.pageNumbers && $scope.pageNumbers.length > 1) {
+        }
+        else{
+            $scope.disableButtons("hidden","none");         
+        }
+        if ($scope.differentSearch()) {
+            $scope.jobResults = {}
+        }
     spinnerService.show('results_spinner');
         jobsService.requestJobs($scope.formData).
         then(function success(response){
+            $scope.disableButtons("visible","initial");
             jobsService.setJobResults(jobsService.paginateJobs($scope.jobResults,response.data))
             $scope.jobResults = jobsService.getJobResults();
             $scope.get_next_num_pages(1);
@@ -96,6 +112,8 @@ angular.module('Degree_Not_Required')
         },
             function error(response){
 
+            }).finally(function(){
+                 spinnerService.hide('results_spinner');
             })
         // .finally(function(){
         //         // let qs = $httpParamSerializer($scope.formData)
@@ -115,10 +133,13 @@ angular.module('Degree_Not_Required')
     }
 
     $scope.saveSessionQuery = function(){
+        sessionStorage.setItem("prev_query",localStorage.query);
         localStorage.setItem("query",$scope.formData.query);
+
     }
    
     $scope.saveLocalLocation = function(){
+        sessionStorage.setItem("prev_location",localStorage.location);
         localStorage.setItem("location",$scope.formData.location);
     }
 

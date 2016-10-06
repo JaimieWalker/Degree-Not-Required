@@ -481,7 +481,7 @@ template {
   display: none;
 }
 
-
+/* Jaimies Stuff */
 html{
       height: 100%;
 }
@@ -489,6 +489,25 @@ html{
 body {
   display: flex;
   flex-direction: column;
+}
+
+
+
+#PayPal_button{
+  text-align: center;
+  margin: auto;
+  padding: 5px;
+  background-color: rgba(11, 137, 128,.7);
+}
+
+#indeed_at{
+  float: right;
+  clear: both;
+}
+
+#contact{
+  padding-left: 10px;
+  color: white;
 }
 
 footer{

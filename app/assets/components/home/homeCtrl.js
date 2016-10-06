@@ -12,10 +12,13 @@ angular.module('Degree_Not_Required')
     	   localStorage.query = "";
         }
         else{
+            sessionStorage.setItem("prev_query",localStorage.query);
             localStorage.setItem("query",$scope.formData.query);
         }
     }
+
     $scope.saveLocalLocation = function(){
+        sessionStorage.setItem("prev_location",localStorage.location);
         localStorage.setItem("location",$scope.formData.location);
     }
     

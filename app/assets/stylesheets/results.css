@@ -1,5 +1,5 @@
 html{
-	background: -webkit-linear-gradient(top, rgba(65,186,186,.5) 0%,rgba(84,206,174,0.5) 100%), url('/assets/city.jpg') no-repeat center center fixed;
+	background: -webkit-linear-gradient(top, rgba(65,186,186,.5) 0%,rgba(84,206,174,0.5) 100%), url('/assets/city.jpg') no-repeat center center local;
 	background-repeat: no-repeat;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -99,6 +99,7 @@ section{
 	clear: both;
 	width: 100%;
 	margin: auto;
+	padding-bottom: 100px;
 }
 .labels{
 	float: right;
@@ -137,23 +138,18 @@ header{
 	color: white;
 }
 
-.page_num{
-	text-align: center;
-	margin: auto;
-	width: 50vw;
-}
-
-.page_num button{
-	margin-top: 30px;
-	margin-right: 3px;
-	padding: 10px;
+#visitor_counter{
+	font-size: .55em;
+	color: white;
+	float: left;
+	position: absolute;
+	z-index: 3;
 }
 
 #prev{
 	font-family: "Raleway",sans-serif;
-	margin: auto;
-	border-color: #2187B7;
 	margin-top: 15px;
+	border-color: #2187B7;
 	padding: 10px; 
     font-size: 1.25em;
     text-decoration: none;
@@ -162,15 +158,14 @@ header{
     position: relative;
     border-radius: 5px;
     font-weight: bolder;
-    right: 25vw;
     width: 100px;
+    float: left;
 }
 
 #next{	
-    left: 25vw;
+	float: right;
 	font-family: "Raleway",sans-serif;
 	margin-top: 15px;
-	margin: auto;
 	border-color: #2187B7;
 	padding: 10px; 
     font-size: 1.25em;

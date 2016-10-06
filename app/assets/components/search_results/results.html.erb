@@ -1,9 +1,12 @@
 <%= stylesheet_link_tag "results" %>
 <spinner name="results_spinner" img-src="assets/squares.gif"></spinner>
+
 <header ng-cloak>
+<div ng-model="job_seekers" id="visitor_counter" ng-bind="'Job Seekers: ' + job_seekers.response"></div>
 	<a ng-href="/"><img alt="Degree Not Required Logo" id="logo" src="assets/degree not required.svg"></a>
 	<span id="app_name">Degree Not Required</span>
 </header>
+
 <title ng-bind="formData.query + ' ' + 'Jobs'"></title>
 	<dnr-search-form ng-cloak></dnr-search-form>
 <section ng-init="init()" ng-cloak> 
@@ -24,10 +27,7 @@
 	</ul>
 	<!-- Need to abstract in a directive -->
 	<div class="page_num" ng-model="numsToDisplay">
-	<button ng-click="prev($event)" id="prev"><</button>
-		<!-- <button ng-click="pageChange(num,$event)" ng-repeat="num in numsToDisplay" ng-bind="num">
-		</button> -->
-	<button ng-click="next($event)" id="next">></button>
+	<button ng-click="prev($event)" id="prev">Prev</button>
+	<button ng-click="next($event)" id="next">Next</button>
 	</div>
-
 </section>

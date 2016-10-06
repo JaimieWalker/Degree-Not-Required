@@ -1,7 +1,11 @@
 <%= stylesheet_link_tag "job" %>
 <section dnr-arrow-press ng-model="job">
-<spinner id="spinner" name="show_spinner" img-src="assets/squares.gif"></spinner>
+<span>Use left <-- and right arrows --> to navigate pages<span ng-model="job_seekers" id="visitor_counter" ng-bind="'Job Seekers: ' + job_seekers.response"></span>
+  <br></span>
+<br>
 	<a href="/jobs">Back to results</a>
+</span>
+<spinner id="spinner" name="show_spinner" img-src="assets/squares.gif"></spinner>
 <title ng-bind="job.jobtitle"></title>
 		<div>
 			<span id="job_title" ng-bind-html="trustAsHtml(job.jobtitle)"></span>
@@ -16,7 +20,5 @@
 		<button ng-click="prev($event)" id="prev">Prev</button>
 		<button ng-click="next($event)" id="next">Next</button>
 </section>
-<span id=indeed_at><a href="http://www.indeed.com/">jobs</a> by <a href="http://www.indeed.com/" title="Job Search">
-<img src="http://www.indeed.com/p/jobsearch.gif" style="border: 0;
-vertical-align: middle;" alt="Indeed job search"></a></span>
+
 

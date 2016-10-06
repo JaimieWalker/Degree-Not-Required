@@ -67,7 +67,8 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider){
 })
 
 app.run(["$http","$window","Poller", function($http,$window,Poller) {
-    $window.addEventListener('load', function(){
+    $window.addEventListener('visibilitychange', function(){
+        if ($window.document.visibilityState === "visible") {
          $http({
                  method : "POST",
                  url    : "/increment_seeker",
@@ -77,10 +78,14 @@ app.run(["$http","$window","Poller", function($http,$window,Poller) {
                             "accept"      : "application/json"
                           }
                 });
+        }
         
      });
+// Need to insert a check for mobile, because mobile browsers don't decrement
+     $window.addEventListener('visibilitychange', function() {
+        debugger
+        if ($window.document.visibilityState === "hidden" || $window.document.visibilityState === "unloaded") {
 
-     $window.addEventListener('beforeunload', function() {
          $http({
                  method : "POST",
                  url    : "/decrement_seeker",
@@ -90,6 +95,7 @@ app.run(["$http","$window","Poller", function($http,$window,Poller) {
                             "accept"      : "application/json"
                           }
                 });
+        }
         
      });
 }]);

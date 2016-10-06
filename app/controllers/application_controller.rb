@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def seekers
-    if(Rails.application.config.current_job_seekers < 0)
+    if(Rails.application.config.current_job_seekers <= 0)
       Rails.application.config.current_job_seekers = 0
     end
     
