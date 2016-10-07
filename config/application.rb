@@ -18,6 +18,7 @@ Bundler.require(*Rails.groups)
 
 module DegreeNotRequired
   class Application < Rails::Application
+  	config.eager_load_paths += %W( #{Rails.root}/app/controllers/Api )
   	config.generators.javascript_engine :js
   	config.current_job_seekers = 0
     # Settings in config/environments/* take precedence over those specified here.
