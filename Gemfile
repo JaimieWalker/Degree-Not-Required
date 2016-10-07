@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 # Added by me
-gem 'pry'
-gem 'pry-nav'
+# gem 'pry'
+# gem 'pry-nav'
 
 gem 'angular-rails-templates'
 # Use angularjs as the JavaScript library
