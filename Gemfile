@@ -7,6 +7,7 @@ gem 'angular-rails-templates'
 # Use angularjs as the JavaScript library
 gem 'angularjs-rails'
 gem 'nokogiri'
+gem 'pg'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
