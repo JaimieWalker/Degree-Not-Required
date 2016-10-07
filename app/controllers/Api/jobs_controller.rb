@@ -1,4 +1,4 @@
-class Api::JobsController < ApplicationController
+class ::Api::JobsController < ApplicationController
 	# Guards against calls to the api, before action is faster than respond_to
 	before_action :ensure_json_request, :set_user_agent_and_ip  
 
