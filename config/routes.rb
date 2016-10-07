@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     post "/increment_seeker", to: "application#increment_seeker"
 
 
-  match "*path" => "application#index", via: :all
   root "application#index"
+  get "*path" => "application#index", format: false
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

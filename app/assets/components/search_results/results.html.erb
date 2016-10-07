@@ -1,9 +1,10 @@
 <%= stylesheet_link_tag "results" %>
-<spinner name="results_spinner" img-src="assets/squares.gif"></spinner>
+<spinner name="results_spinner" img-src="images/squares.gif"></spinner>
+
 
 <header ng-cloak>
 <div ng-model="job_seekers" id="visitor_counter" ng-bind="'Job Seekers: ' + job_seekers.response"></div>
-	<a ng-href="/"><img alt="Degree Not Required Logo" id="logo" src="assets/degree not required.svg"></a>
+	<a ng-href="/"><%= image_tag("degree not required.svg",id: "logo",alt: "Degree Not Required Logo" ) %></a>
 	<span id="app_name">Degree Not Required</span>
 </header>
 

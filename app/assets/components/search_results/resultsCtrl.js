@@ -39,10 +39,11 @@ angular.module('Degree_Not_Required')
     };
 
 // Need to abstract
-    $scope.get_next_num_pages = function(num = 5){
+        $scope.get_next_num_pages = function(num){
+             var num = (typeof num !== 'undefined') ?  num : 5;
              $scope.disableButtons("hidden","none");
              spinnerService.show("results_spinner");
-       let qs = $httpParamSerializer($scope.formData)
+       var qs = $httpParamSerializer($scope.formData)
         while(num > 0){
             num-=1;
             if (Object.keys($scope.jobResults).length || Object.keys($scope.jobResults).length == 0 ) {
@@ -76,15 +77,15 @@ angular.module('Degree_Not_Required')
 
     // Helper method, keeps the array at a length of 5. Need to refactor for better UX 
     // function arrayOf5(){
-    //     let val = $scope.pageNumbers.indexOf($scope.currentPage);
-    //     let test = $scope.pageNumbers.slice($scope.currentPage,$scope.currentPage+5)
+    //     var val = $scope.pageNumbers.indexOf($scope.currentPage);
+    //     var test = $scope.pageNumbers.slice($scope.currentPage,$scope.currentPage+5)
     //     if (test.length == 5) {
     //         $scope.numsToDisplay = test;
     //     } 
     // }
     $scope.disableButtons = function(visibility,display){
-        let buttons = document.getElementsByTagName("button");
-        for (let i = 0; i < buttons.length; i++) {
+        var buttons = document.getElementsByTagName("button");
+        for (var i = 0; i < buttons.length; i++) {
                 buttons[i].style.visibility = visibility;
                 buttons[i].style.display = display;  
         }
@@ -116,7 +117,7 @@ angular.module('Degree_Not_Required')
                  spinnerService.hide('results_spinner');
             })
         // .finally(function(){
-        //         // let qs = $httpParamSerializer($scope.formData)
+        //         // var qs = $httpParamSerializer($scope.formData)
         //         // $location.path().replace()
         //         if (Object.keys($scope.jobResults).length <= 2) {
 

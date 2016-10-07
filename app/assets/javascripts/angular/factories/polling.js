@@ -1,7 +1,7 @@
 angular.module('Degree_Not_Required')
 .factory('Poller', function($http, $timeout) {
-  let job_seekers = { response: {}}
-  let poller = function() {
+  var job_seekers = { response: {}}
+  var poller = function() {
     $http.get('/job_seekers',  { cache: false}).then(function(res) {
       job_seekers.response = res.data;
       $timeout(poller, 1000);

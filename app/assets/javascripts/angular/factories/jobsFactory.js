@@ -1,12 +1,12 @@
 "use strict"
 angular.module('Degree_Not_Required')
 	.factory('jobsService', function(spinnerService,$http,$httpParamSerializer){
-		let jobsService = {
+		var jobsService = {
 			getJobResults : function(){
 				return JSON.parse(localStorage.getItem("jobResults"))
 			},
 			setJobResults : function(jobs){
-				let json_jobs = JSON.stringify(jobs);
+				var json_jobs = JSON.stringify(jobs);
 				localStorage.setItem("jobResults",json_jobs);
 			},
 			 requestJobs : function(params){
@@ -45,8 +45,10 @@ angular.module('Degree_Not_Required')
 			},
 // Takes an array and turns it into an object
 // New Jobs is an array, and old Jobs is an object. We need to add the array to the objects
-			paginateJobs : function(oldJobs,newJobs,numOfResults=15){
-				let count = 0
+			paginateJobs : function(oldJobs,newJobs,numOfResults){
+				  var numOfResults = (typeof numOfResults !== 'undefined') ?  numOfResults : 15;
+
+				var count = 0
 				if (!oldJobs) {
 					oldJobs = [];
 				}
@@ -61,7 +63,7 @@ angular.module('Degree_Not_Required')
 
 				// Need to refactor, O(n^2)
 
-				// let count = 0
+				// var count = 0
 				// if (newJobs) {
 				// 	while(newJobs.length){
 				// 		oldJobs[count] = newJobs.splice(0,numOfResults)
@@ -71,8 +73,9 @@ angular.module('Degree_Not_Required')
 				return oldJobs;
 			},
 // Makes sure each new page has at least 15 results
-			addJobsToObject : function(page,newJobs,numOfResults=15){
-				let count = 0;
+			addJobsToObject : function(page,newJobs,numOfResults){
+				var numOfResults = (typeof numOfResults !== 'undefined') ?  numOfResults : 15;
+				var count = 0;
 				if (newJobs) {
 					while(newJobs.length){
 // If there is a page of results and its length is less than the number of results, fill the page up

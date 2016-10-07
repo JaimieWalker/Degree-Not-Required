@@ -25,7 +25,7 @@ angular.module('Degree_Not_Required')
     }
 
     $scope.next = function(){
-        let nextResults = (parseInt($scope.currentPage) + 1).toString();
+        var nextResults = (parseInt($scope.currentPage) + 1).toString();
 		if ($scope.currentJob === $scope.jobResults[$scope.currentPage].length-1 && $scope.jobResults[nextResults]) {
 			$scope.currentPage = nextResults;
 			$scope.job = $scope.jobResults[$scope.currentPage][0];
@@ -37,9 +37,11 @@ angular.module('Degree_Not_Required')
 		// $scope.changeUrl();
     }
 
-$scope.get_next_num_pages = function(num = 1){
+$scope.get_next_num_pages = function(num){
+    var num = (typeof num !== 'undefined') ?  num : 1;
+
     spinnerService.show('show_spinner');
-       let params = {"query":localStorage.getItem("query"),"location":localStorage.getItem("location")}
+       var params = {"query":localStorage.getItem("query"),"location":localStorage.getItem("location")}
         while(num > 0){
             num-=1;
             if (Object.keys($scope.jobResults).length) {
@@ -64,7 +66,7 @@ $scope.get_next_num_pages = function(num = 1){
     }
 
     // $scope.changeUrl = function(){
-    // 	debugger
+    // 	
     // 	$location.path("jobs/"+ $scope.job.jobkey).replace();
     // 	$window.history.pushState(null,$scope.job.jobtitle,$location.absUrl());
     // }

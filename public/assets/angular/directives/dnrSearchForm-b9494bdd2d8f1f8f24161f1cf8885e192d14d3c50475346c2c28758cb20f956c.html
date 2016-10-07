@@ -1,0 +1,12 @@
+<div class="form_container">
+	<form id="search_form" ng-submit="search()">
+	<span class="labels">Job/Company/Title:</span>
+	  <input type="text" ng-model="formData.query" 
+	  name="query" placeholder="Job/Company/Title" 
+	  ng-blur="saveSessionQuery()" oninvalid="this.setCustomValidity('Enter a job/title or company')" required>
+	  <span class="labels">Location:</span>
+	  <input type="text" name="location" ng-model="formData.location" ng-blur="saveLocalLocation()" placeholder="Location/Zip Code/City">
+	  <br>
+	  <input type="submit" value="search">
+	</form>
+</div>  

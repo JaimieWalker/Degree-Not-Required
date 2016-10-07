@@ -6,7 +6,7 @@ angular.module("Degree_Not_Required")
 				angular.element($window).bind("keydown", function(event){
 					switch(event.which){
 						case 37: // left
-						 let previousResult = (parseInt(scope.currentPage) - 1).toString();
+						 var previousResult = (parseInt(scope.currentPage) - 1).toString();
 							if (scope.currentJob === scope.jobResults[scope.currentPage][0] && scope.jobResults[previousResult]) {
 									scope.currentPage = previousResult;
 									scope.job = scope.jobResults[scope.currentPage][0];
@@ -25,7 +25,7 @@ angular.module("Degree_Not_Required")
 						break;
 
 						case 39: //right
-						let nextPage = (parseInt(scope.currentPage) + 1).toString();
+						var nextPage = (parseInt(scope.currentPage) + 1).toString();
 							if (scope.currentJob === scope.jobResults[scope.currentPage].length-1 && scope.jobResults[nextPage]) {
 								scope.currentPage = nextPage;
 								scope.currentJob = 0;

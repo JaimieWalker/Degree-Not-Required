@@ -53,7 +53,7 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider){
 
 
     // angular.element(document).ready(function () {
-    //     debugger
+    //     
     //     $http({
     //              method : "POST",
     //              url    : "api/increment_seeker",
@@ -83,7 +83,7 @@ app.run(["$http","$window","Poller", function($http,$window,Poller) {
      });
 // Need to insert a check for mobile, because mobile browsers don't decrement
      $window.addEventListener('visibilitychange', function() {
-        debugger
+        
         if ($window.document.visibilityState === "hidden" || $window.document.visibilityState === "unloaded") {
 
          $http({

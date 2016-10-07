@@ -1,5 +1,5 @@
 html{
-	background: -webkit-linear-gradient(top, rgba(65,186,186,.5) 0%,rgba(84,206,174,0.5) 100%), url('/assets/city.jpg') no-repeat center center local;
+	background: -webkit-linear-gradient(top, rgba(65,186,186,.5) 0%,rgba(84,206,174,0.5) 100%), url('/images/city.jpg') no-repeat center center local;
 	background-repeat: no-repeat;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
