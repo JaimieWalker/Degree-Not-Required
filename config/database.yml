@@ -59,6 +59,7 @@ development:
 
   production:
   <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
   adapter: mysql2
   database: <%= ENV["DATABASE"] %>
   username: <%=ENV["DATABASE_USERNAME"] %>
