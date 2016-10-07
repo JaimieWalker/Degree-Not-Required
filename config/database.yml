@@ -46,12 +46,23 @@ development:
 #
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
-#
-production:
+# #
+# production:
+#   <<: *default
+#   adapter: mysql2
+#   database: <%= Rails.application.secrets.DATABASE %>
+#   username: <%=Rails.application.secrets.DATABASE_USERNAME %>
+#   password: <%=Rails.application.secrets.DATABASE_PASSWORD %>
+#   host: <%=Rails.application.secrets.DATABASE_HOST %>
+#   port: <%=Rails.application.secrets.DATABASE_PORT %>
+#   pool: 100
+
+  production:
   <<: *default
-  database: <%= Rails.application.secrets.DATABASE %>
-  username: <%=Rails.application.secrets.DATABASE_USERNAME %>
-  password: <%=Rails.application.secrets.DATABASE_PASSWORD %>
-  host: <%=Rails.application.secrets.DATABASE_HOST %>
-  port: <%=Rails.application.secrets.DATABASE_PORT %>
+  adapter: mysql2
+  database: <%= ENV["DATABASE"] %>
+  username: <%=ENV["DATABASE_USERNAME"] %>
+  password: <%=ENV["DATABASE_PASSWORD"] %>
+  host: <%=ENV["DATABASE_HOST"] %>
+  port: <%=ENV["DATABASE_PORT"] %>
   pool: 100
