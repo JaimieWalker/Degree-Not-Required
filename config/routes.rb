@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  namespace :api, constraints: { format: 'json' } do 
+  scope "/api", as: "api", module: "api", constraints: { format: 'json' } do 
     resources :jobs, only: [:index, :create]
     post "jobs/next_page", to: "jobs#next_page"
 
