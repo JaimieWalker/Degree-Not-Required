@@ -32161,7 +32161,6 @@ angular.module('Degree_Not_Required')
 
     $scope.next = function(){
         var nextPage = (parseInt($scope.currentPage) + 1).toString();
-        debugger
             if ($scope.currentJob === $scope.jobResults[$scope.currentPage].length-1 && $scope.jobResults[nextPage]) {
                 $scope.currentPage = nextPage;
                 $scope.currentJob = 0;
@@ -32175,7 +32174,7 @@ angular.module('Degree_Not_Required')
                 $scope.currentJob+=1
                 $scope.job = $scope.jobResults[$scope.currentPage][$scope.currentJob];
             }
-            $scope.$apply();
+            
     }
 
 $scope.get_next_num_pages = function(num){
