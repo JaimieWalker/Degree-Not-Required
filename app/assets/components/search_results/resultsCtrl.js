@@ -114,6 +114,7 @@ angular.module('Degree_Not_Required')
             function error(response){
 
             }).finally(function(){
+                $scope.disableButtons("visible","initial")
                  spinnerService.hide('results_spinner');
             })
         // .finally(function(){

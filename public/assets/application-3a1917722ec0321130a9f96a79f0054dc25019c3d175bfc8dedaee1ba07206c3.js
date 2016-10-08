@@ -32068,6 +32068,7 @@ angular.module('Degree_Not_Required')
             function error(response){
 
             }).finally(function(){
+                $scope.disableButtons("visible","initial")
                  spinnerService.hide('results_spinner');
             })
         // .finally(function(){
@@ -32159,16 +32160,22 @@ angular.module('Degree_Not_Required')
     }
 
     $scope.next = function(){
-        var nextResults = (parseInt($scope.currentPage) + 1).toString();
-		if ($scope.currentJob === $scope.jobResults[$scope.currentPage].length-1 && $scope.jobResults[nextResults]) {
-			$scope.currentPage = nextResults;
-			$scope.job = $scope.jobResults[$scope.currentPage][0];
-		}
-		else{
-			$scope.currentJob+=1
-			$scope.job = $scope.jobResults[$scope.currentPage][$scope.currentJob];
-		}
-		// $scope.changeUrl();
+        var nextPage = (parseInt($scope.currentPage) + 1).toString();
+        debugger
+            if ($scope.currentJob === $scope.jobResults[$scope.currentPage].length-1 && $scope.jobResults[nextPage]) {
+                $scope.currentPage = nextPage;
+                $scope.currentJob = 0;
+                $scope.job = $scope.jobResults[$scope.currentPage][$scope.currentJob];
+             } //If the current job is the last in the list, and there are no more results get the next 2 pages
+            else if($scope.currentJob === $scope.jobResults[$scope.currentPage].length-1 && (!$scope.jobResults[nextPage] || !$scope.jobResults[$scope.currentJob+1])){
+                $scope.get_next_num_pages(1);
+              //Do nothing
+            }//If I am on the current page and there are no more results, because a page can have maybe 4 or 12 results, get the next results
+            else{
+                $scope.currentJob+=1
+                $scope.job = $scope.jobResults[$scope.currentPage][$scope.currentJob];
+            }
+            $scope.$apply();
     }
 
 $scope.get_next_num_pages = function(num){
