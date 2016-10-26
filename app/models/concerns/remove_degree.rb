@@ -21,11 +21,10 @@ module RemoveDegree
 		/BA/,
 		/Ph.D./,
 		/P\.?H\.?D\.?/,
-		/bachelor/i,
+		
 	]
 		
 	MAYBE = [/Bachelor’s degree preferred/i,
-		/Degree .* preferably/i,
 		/equivalent experience/i,
 		/relevant life experience/i]
 
