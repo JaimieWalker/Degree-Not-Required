@@ -20,7 +20,8 @@ module RemoveDegree
 		/M.S./,
 		/BA/,
 		/Ph.D./,
-		/P\.?H\.?D\.?/
+		/P\.?H\.?D\.?/,
+		/bachelor/i,
 	]
 		
 	MAYBE = [/Bachelor’s degree preferred/i,
